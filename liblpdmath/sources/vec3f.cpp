@@ -193,7 +193,9 @@ float		Vec3f::magnitude(void)
 
 Vec3f		&Vec3f::normalize(void)
 {
-	*this /= magnitude();
+	float m = magnitude();
+	if (m > 0.f)
+		*this /= magnitude();
 	return (*this);
 }
 
@@ -246,7 +248,7 @@ Vec3f		Vec3f::transform(Mat4 &v)
 
 Vec3f		Vec3f::rotate(Quat &v)
 {
-	Quat w = v * *this * v.conjugate();
+	Quat w = (v * *this) * v.conjugate();
 	return (w.xyz());
 }
 Vec3f		&Vec3f::debug(void)

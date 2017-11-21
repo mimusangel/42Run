@@ -28,22 +28,28 @@ int main()
 			{
 				mesh.begin();
 				static const GLfloat g_vertex_buffer_data[] = {
-				  -1.f, 0.f, 0.f, 0.f, 1.f, 0.f, 1.f, 0.f, 0.f,
-				  -1.f, 0.f, 0.f, 1.f, 0.f, 0.f, 0.f, 0.f, -1.f
+				  -1.f, 0.f, 1.f, 0.f, 1.f, 1.f, 1.f, 0.f, 1.f,
+				  -1.f, 0.f, 1.f, 1.f, 0.f, 1.f, 0.f, 0.f, 0.f,
+				  -1.f, 0.0, 1.f, 0.f, 0.f, 0.f, -1.f, 0.f, -1.f,
+				  1.f, 0.f, 1.f, 1.f, 0.f, -1.f, 0.f, 0.f, 0.f,
+				  0.f, 0.f, 0.f, 1.f, 0.f, -1.f, -1.f, 0.f, -1.f,
 				};
 				static const GLfloat g_color_buffer_data[] = {
 				  1.f, 0.f, 0.f, 1.f, 0.f, 0.f, 1.f, 0.f, 0.f,
-				  .5f, 0.f, 0.f, .5f, 0.f, 0.f, .5f, 0.f, 0.f
+				  .5f, 0.f, 0.f, .5f, 0.f, 0.f, .5f, 0.f, 0.f,
+				  0.f, .5f, 0.f, 0.f, .5f, 0.f, 0.f, .5f, 0.f,
+				  0.f, 0.f, .5f, 0.f, 0.f, .5f, 0.f, 0.f, .5f,
+				  0.f, .5f, .5f, 0.f, .5f, .5f, 0.f, .5f, .5f,
 				};
-				mesh.add(0, GL_FLOAT, 3, (void *)g_vertex_buffer_data, 6);
-				mesh.add(1, GL_FLOAT, 3, (void *)g_color_buffer_data, 6);
+				mesh.add(0, GL_FLOAT, 3, (void *)g_vertex_buffer_data, 15);
+				mesh.add(1, GL_FLOAT, 3, (void *)g_color_buffer_data, 15);
 				mesh.end();
 			}
 			glEnable(GL_DEPTH_TEST);
 			glEnable(GL_CULL_FACE);
 			glCullFace(GL_FRONT);
 			Mat4 projection = Mat4::Perspective(70.f, 1280.f / 720.f, 0.1f, 1000.f);
-			Mat4 model = Mat4::Translate(0, 0, 3);
+			Mat4 model = Mat4::Translate(0, 0, 2);
 			Transform cam(Vec3f(0, -1, 0));
 			Vec3f rot;
 			Vec3f up(0, 1, 0);
@@ -58,13 +64,43 @@ int main()
 				{
 					if (glfwGetKey(win.getGLFW(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
 						win.setGrab(false);
-					if (win.dirMouse[1] != 0.f || win.dirMouse[0] != 0.f)
+					else
 					{
-						rot[0] += win.dirMouse[1];
-						rot[1] += win.dirMouse[0];
-						win.dirMouse[1] = 0.f;
-						win.dirMouse[0] = 0.f;
-						cam.setRotate(rot);
+						if (win.dirMouse[1] != 0.f || win.dirMouse[0] != 0.f)
+						{
+							rot[0] += -win.dirMouse[1] * 0.5f;
+							rot[1] += -win.dirMouse[0] * 0.5f;
+							if (rot[0] > 90.f)
+								rot[0] = 90.f;
+							if (rot[0] < -90.f)
+								rot[0] = -90.f;
+							win.dirMouse[1] = 0.f;
+							win.dirMouse[0] = 0.f;
+							cam.setRotate(rot);
+						}
+						Vec3f dir(0.f);
+						if (glfwGetKey(win.getGLFW(), GLFW_KEY_W) == GLFW_PRESS)
+						{
+							dir[0] += sinf(TORADIANS(rot[1]));
+							dir[2] += -cosf(TORADIANS(rot[1]));
+						}
+						if (glfwGetKey(win.getGLFW(), GLFW_KEY_S) == GLFW_PRESS)
+						{
+							dir[0] += -sinf(TORADIANS(rot[1]));
+							dir[2] += cosf(TORADIANS(rot[1]));
+						}
+						if (glfwGetKey(win.getGLFW(), GLFW_KEY_D) == GLFW_PRESS)
+						{
+							dir[0] += -cosf(TORADIANS(rot[1]));
+							dir[2] += -sinf(TORADIANS(rot[1]));
+						}
+						if (glfwGetKey(win.getGLFW(), GLFW_KEY_A) == GLFW_PRESS)
+						{
+							dir[0] += cosf(TORADIANS(rot[1]));
+							dir[2] += sinf(TORADIANS(rot[1]));
+						}
+						dir.normalize();
+						cam.translate(dir, 0.1f);
 						view = cam.toMat4();
 					}
 

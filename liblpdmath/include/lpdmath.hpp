@@ -164,6 +164,13 @@ public:
 	Transform	&rotate(Vec3f &axis, float angle);
 	Transform	&setRotate(Vec3f &rot);
 	Transform	&debug(void);
+	Transform	&translate(Vec3f &axis, float speed);
+	Vec3f		getForward(void);
+	Vec3f		getBack(void);
+	Vec3f		getRight(void);
+	Vec3f		getLeft(void);
+	Vec3f		getUp(void);
+	Vec3f		getDown(void);
 };
 
 #endif

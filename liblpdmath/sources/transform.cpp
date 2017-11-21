@@ -34,14 +34,50 @@ Transform	&Transform::setRotate(Vec3f &rot)
 	Quat z = Quat::AxisAngle(Vec3f(0, 0, 1), TORADIANS(rot[2]));
 	Quat y = Quat::AxisAngle(Vec3f(0, 1, 0), TORADIANS(rot[1]));
 	Quat x = Quat::AxisAngle(Vec3f(1, 0, 0), TORADIANS(rot[0]));
-	_rotate = z * y * x;
+	_rotate = x * y * z;
 	return (*this);
 }
 
-Transform		&Transform::debug(void)
+Transform	&Transform::debug(void)
 {
 	_position.debug();
 	_rotate.debug();
 	_scale.debug();
 	return (*this);
+}
+
+Transform	&Transform::translate(Vec3f &axis, float speed)
+{
+	_position += (axis * speed);
+	return (*this);
+}
+
+Vec3f		Transform::getForward(void)
+{
+	return (Vec3f(0, 0, 1).rotate(_rotate));
+}
+
+Vec3f		Transform::getBack(void)
+{
+	return (Vec3f(0, 0, -1).rotate(_rotate));
+}
+
+Vec3f		Transform::getRight(void)
+{
+	return (Vec3f(1, 0, 0).rotate(_rotate));
+}
+
+Vec3f		Transform::getLeft(void)
+{
+	return (Vec3f(-1, 0, 0).rotate(_rotate));
+}
+
+Vec3f		Transform::getUp(void)
+{
+	return (Vec3f(0, 1, 0).rotate(_rotate));
+}
+
+Vec3f		Transform::getDown(void)
+{
+	return (Vec3f(0, -1, 0).rotate(_rotate));
 }
