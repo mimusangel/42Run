@@ -23,16 +23,20 @@ int main()
 				return (0);
 			if (!sample.build())
 				return (0);
-			Mesh mesh(1);
+			Mesh mesh(2);
 			if (mesh.isCreated())
 			{
 				mesh.begin();
 				static const GLfloat g_vertex_buffer_data[] = {
-				   -1.0f, -1.0f, 0.0f,
-				   0.0f,  1.0f, 0.0f,
-				   1.0f, -1.0f, 0.0f,
+				  -1.f, 0.f, 0.f, 0.f, 1.f, 0.f, 1.f, 0.f, 0.f,
+				  -1.f, 0.f, 0.f, 1.f, 0.f, 0.f, 0.f, 0.f, -1.f
 				};
-				mesh.add(0, GL_FLOAT, 3, (void *)g_vertex_buffer_data, 3);
+				static const GLfloat g_color_buffer_data[] = {
+				  1.f, 0.f, 0.f, 1.f, 0.f, 0.f, 1.f, 0.f, 0.f,
+				  .5f, 0.f, 0.f, .5f, 0.f, 0.f, .5f, 0.f, 0.f
+				};
+				mesh.add(0, GL_FLOAT, 3, (void *)g_vertex_buffer_data, 6);
+				mesh.add(1, GL_FLOAT, 3, (void *)g_color_buffer_data, 6);
 				mesh.end();
 			}
 			glEnable(GL_DEPTH_TEST);
@@ -40,7 +44,11 @@ int main()
 			glCullFace(GL_FRONT);
 			Mat4 projection = Mat4::Perspective(70.f, 1280.f / 720.f, 0.1f, 1000.f);
 			Mat4 model = Mat4::Translate(0, 0, 3);
-			Mat4 view = Mat4::Identity();
+			Transform cam(Vec3f(0, -1, 0));
+			Vec3f rot;
+			Vec3f up(0, 1, 0);
+			Vec3f right(1, 0, 0);
+			Mat4 view = cam.toMat4();
 			while (win.isOpen())
 			{
 				/* ******************** */
@@ -50,6 +58,16 @@ int main()
 				{
 					if (glfwGetKey(win.getGLFW(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
 						win.setGrab(false);
+					if (win.dirMouse[1] != 0.f || win.dirMouse[0] != 0.f)
+					{
+						rot[0] += win.dirMouse[1];
+						rot[1] += win.dirMouse[0];
+						win.dirMouse[1] = 0.f;
+						win.dirMouse[0] = 0.f;
+						cam.setRotate(rot);
+						view = cam.toMat4();
+					}
+
 				}
 				else
 				{

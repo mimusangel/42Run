@@ -249,3 +249,8 @@ Vec3f		Vec3f::rotate(Quat &v)
 	Quat w = v * *this * v.conjugate();
 	return (w.xyz());
 }
+Vec3f		&Vec3f::debug(void)
+{
+	std::cout << "Vec3f (" << _data[0] << ", " << _data[1] << ", " << _data[2] << ")\n";
+	return (*this);
+}

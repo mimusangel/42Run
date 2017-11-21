@@ -198,3 +198,9 @@ Vec2f		Vec2f::refract(Vec2f &normal, float eta)
 		return (Vec2f(0.f, 0.f));
 	return (Vec2f(normal * ((*this * eta) - (eta * d + sqrtf(k)))));
 }
+
+Vec2f		&Vec2f::debug(void)
+{
+	std::cout << "Vec2f (" << _data[0] << ", " << _data[1] << ")\n";
+	return (*this);
+}

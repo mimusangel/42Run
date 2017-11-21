@@ -3,6 +3,7 @@
 
 # include <cmath>
 # include <cstring>
+# include <iostream>
 
 # ifndef TORADIANS
 #  define TORADIANS(x)	(x * 0.0174533f)
@@ -17,8 +18,8 @@ class Vec2f {
 private:
 	float _data[2];
 public:
-	Vec2f(float v);
-	Vec2f(float x = 0.0f, float y = 0.0f);
+	Vec2f(float v = 0.f);
+	Vec2f(float x, float y);
 	Vec2f(const Vec2f &v);
 	float		&operator[](const int i);
 	const float	&operator[](const int i) const;
@@ -50,14 +51,15 @@ public:
 	float		dot(Vec2f &v);
 	Vec2f		reflect(Vec2f &normal);
 	Vec2f		refract(Vec2f &normal, float eta);
+	Vec2f		&debug(void);
 };
 
 class Vec3f {
 private:
 	float _data[3];
 public:
-	Vec3f(float v);
-	Vec3f(float x = 0.0f, float y = 0.0f, float z = 0.0f);
+	Vec3f(float v = 0.f);
+	Vec3f(float x, float y, float z);
 	Vec3f(const Vec2f &v, float z = 0.0f);
 	Vec3f(const Vec3f &v);
 	float		&operator[](const int i);
@@ -95,6 +97,7 @@ public:
 	Vec2f		yz(void);
 	Vec3f		transform(Mat4 &v);
 	Vec3f		rotate(Quat &v);
+	Vec3f		&debug(void);
 };
 
 class Mat4 {
@@ -107,6 +110,7 @@ public:
 	Mat4		operator*(const Mat4 &v);
 	Mat4 		&operator*=(const Mat4 &v);
 	Vec3f		transform(Vec3f &v);
+	Mat4		&debug(void);
 
 	static Mat4	Identity(void);
 	static Mat4	Translate(float x, float y, float z);
@@ -139,8 +143,27 @@ public:
 	Mat4		toMat4(void);
 	Quat		conjugate(void);
 	Vec3f		xyz(void);
+	float		magnitude(void);
+	Quat		&normalize(void);
+	Quat		&debug(void);
 
 	static Quat	AxisAngle(const Vec3f &axis, float angle);
+	static Quat	Euler(const Vec3f &euler);
+};
+
+class Transform {
+private:
+	Vec3f		_position;
+	Quat		_rotate;
+	Vec3f		_scale;
+	Transform	*_parent;
+public:
+	Transform(const Vec3f &pos = Vec3f(), const Quat &rot = Quat(), const Vec3f &scale = Vec3f(1.f));
+	Transform	&setParent(Transform *parent);
+	Mat4		toMat4(void);
+	Transform	&rotate(Vec3f &axis, float angle);
+	Transform	&setRotate(Vec3f &rot);
+	Transform	&debug(void);
 };
 
 #endif

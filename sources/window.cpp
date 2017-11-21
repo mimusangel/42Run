@@ -19,10 +19,10 @@ static void cursor_position_callback(GLFWwindow* window, double xpos, double ypo
 	win = (Window *)glfwGetWindowUserPointer(window);
 	if (!win)
 		return ;
-	// win->dirMouse[0] = xpos - win->mouse[0];
-	// win->dirMouse[1] = ypos - win->mouse[1];
-	// win->mouse[0] = xpos;
-	// win->mouse[1] = ypos;
+	win->dirMouse[0] = xpos - win->mouse[0];
+	win->dirMouse[1] = ypos - win->mouse[1];
+	win->mouse[0] = xpos;
+	win->mouse[1] = ypos;
 }
 
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
@@ -100,8 +100,8 @@ void				Window::setGrab(bool grab)
 	if (_grab)
 	{
 		glfwSetInputMode(_win, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-		// dirMouse[0] = mouse[0];
-		// dirMouse[1] = mouse[1];
+		dirMouse[0] = 0.f;
+		dirMouse[1] = 0.f;
 	}
 	else
 		glfwSetInputMode(_win, GLFW_CURSOR, GLFW_CURSOR_NORMAL);

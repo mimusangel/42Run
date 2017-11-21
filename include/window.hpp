@@ -11,8 +11,8 @@ private:
 	bool				_grab;
 
 public:
-	// mmatrix::Vec2		mouse;
-	// mmatrix::Vec2		dirMouse;
+	Vec2f				mouse;
+	Vec2f				dirMouse;
 	Window(int width, int height, std::string title);
 	~Window();
 	std::string			&getError(void);

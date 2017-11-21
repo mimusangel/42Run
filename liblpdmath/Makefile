@@ -13,7 +13,8 @@ SRC = \
 	vec2f.cpp \
 	vec3f.cpp \
 	mat4.cpp \
-	quat.cpp
+	quat.cpp \
+	transform.cpp
 
 
 
