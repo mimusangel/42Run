@@ -148,6 +148,7 @@ public:
 	Quat		&debug(void);
 
 	static Quat	AxisAngle(const Vec3f &axis, float angle);
+	static Quat	Angle(const Vec3f &rot);
 	static Quat	Euler(const Vec3f &euler);
 };
 

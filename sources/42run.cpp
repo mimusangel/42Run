@@ -49,6 +49,8 @@ int main()
 			glEnable(GL_DEPTH_TEST);
 			glEnable(GL_CULL_FACE);
 			glCullFace(GL_FRONT);
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			win.getGame().init();
 			win.projection = Mat4::Perspective(70.f, 1280.f / 720.f, 0.001f, 1000.f);
 			Mat4 view = Mat4::Translate(0, -1, 0);
@@ -61,6 +63,7 @@ int main()
 			int frame = 0;
 			glClearColor(0.f, 0.f, 0.f, 1);
 			Texture	texture = Texture::LoadBMP("uvtemplate.bmp");
+			Texture font = Texture::LoadPNG("font.png");
 			while (win.isOpen())
 			{
 				/* ******************** */
@@ -72,7 +75,7 @@ int main()
 				while (timeAccumulator >= tickPerSec)
 				{
 					timeAccumulator -= tickPerSec;
-					win.getGame().update();
+					win.getGame().update((void *)&win);
 					tick++;
 				}
 				/* ******************** */
@@ -86,7 +89,7 @@ int main()
 				sample.uniformMat4((GLchar *)"view", (GLfloat *)&view);
 				// mesh.render(GL_TRIANGLES);
 				glActiveTexture(GL_TEXTURE0);
-				sample.uniform1i("uTexture", 0);
+				sample.uniform1i((GLchar *)"uTexture", 0);
 				texture.bind();
 				win.getGame().render(&sample);
 				win.update();

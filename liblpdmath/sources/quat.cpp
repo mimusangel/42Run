@@ -131,6 +131,15 @@ Quat	Quat::AxisAngle(const Vec3f &axis, float angle)
 	return (Quat(axis[0] * s, axis[1] * s, axis[2] * s, cosf(angle / 2.f)));
 }
 
+Quat	Quat::Angle(const Vec3f &rot)
+{
+	Quat z = Quat::AxisAngle(Vec3f(0, 0, 1), TORADIANS(rot[2]));
+	Quat y = Quat::AxisAngle(Vec3f(0, 1, 0), TORADIANS(rot[1]));
+	Quat x = Quat::AxisAngle(Vec3f(1, 0, 0), TORADIANS(rot[0]));
+	return (x * y * z);
+}
+
+
 Quat	Quat::Euler(const Vec3f &euler)
 {
 	float c1 = cosf(euler[0] / 2.f);

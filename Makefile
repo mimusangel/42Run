@@ -16,7 +16,8 @@ SRC = \
 	shaders.cpp \
 	mesh.cpp \
 	game.cpp \
-	texture.cpp
+	texture.cpp \
+	room.cpp
 
 
 
