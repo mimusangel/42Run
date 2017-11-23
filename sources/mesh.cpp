@@ -3,11 +3,14 @@
 
 Mesh::Mesh(unsigned int vboNumber) : _vboNumber(vboNumber), _size(0)
 {
-	if ((_vbo = (GLuint *)malloc(sizeof(GLuint) * vboNumber)))
+	if (vboNumber)
 	{
-		glGenVertexArrays(1, &(_vao));
-		glBindVertexArray(_vao);
-		glGenBuffers(vboNumber, _vbo);
+		if ((_vbo = (GLuint *)malloc(sizeof(GLuint) * vboNumber)))
+		{
+			glGenVertexArrays(1, &(_vao));
+			glBindVertexArray(_vao);
+			glGenBuffers(vboNumber, _vbo);
+		}
 	}
 }
 

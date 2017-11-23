@@ -46,10 +46,10 @@ Vec3f		Mat4::transform(Vec3f &v)
 Mat4		&Mat4::debug(void)
 {
 	std::cout << "Mat4\n";
-	std::cout << "\t" << _data[0] << ", " << _data[1] << ", " << _data[2] << ", " << _data[3] << ")\n";
-	std::cout << "\t" << _data[4] << ", " << _data[5] << ", " << _data[6] << ", " << _data[7] << ")\n";
-	std::cout << "\t" << _data[8] << ", " << _data[9] << ", " << _data[10] << ", " << _data[11] << ")\n";
-	std::cout << "\t" << _data[12] << ", " << _data[13] << ", " << _data[14] << ", " << _data[15] << ")\n";
+	std::cout << "\t" << _data[0] << ", " << _data[1] << ", " << _data[2] << ", " << _data[3] << ",\n";
+	std::cout << "\t" << _data[4] << ", " << _data[5] << ", " << _data[6] << ", " << _data[7] << ",\n";
+	std::cout << "\t" << _data[8] << ", " << _data[9] << ", " << _data[10] << ", " << _data[11] << ",\n";
+	std::cout << "\t" << _data[12] << ", " << _data[13] << ", " << _data[14] << ", " << _data[15] << "\n";
 	return (*this);
 }
 

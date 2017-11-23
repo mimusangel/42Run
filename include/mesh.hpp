@@ -11,7 +11,7 @@ private:
 	unsigned int	_size;
 
 public:
-	Mesh(unsigned int vboNumber);
+	Mesh(unsigned int vboNumber = 0);
 	~Mesh();
 	bool			isCreated(void);
 	void			begin(void);

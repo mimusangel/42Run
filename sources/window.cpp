@@ -10,6 +10,25 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 	win = (Window *)glfwGetWindowUserPointer(window);
 	if (!win)
 		return ;
+	if (action == GLFW_PRESS)
+	{
+		if (key == GLFW_KEY_F)
+		{
+			GLint polygonMode;
+			glGetIntegerv(GL_POLYGON_MODE, &polygonMode);
+			if (polygonMode == GL_LINE)
+			{
+				glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+				glEnable(GL_CULL_FACE);
+				glCullFace(GL_FRONT);
+			}
+			else if (polygonMode == GL_FILL)
+			{
+				glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+				glDisable(GL_CULL_FACE);
+			}
+		}
+	}
 }
 
 static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
@@ -34,6 +53,15 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
 		return ;
 }
 
+static void win_resize_callback(GLFWwindow *window, int width, int height)
+{
+	Window	*win;
+
+	win = (Window *)glfwGetWindowUserPointer(window);
+	glViewport(0, 0, width, height);
+	win->projection = Mat4::Perspective(70.0f, (float)width / (float)height, 0.001f, 1000.0f);
+}
+
 /*
 ** Class Window
 */
@@ -52,6 +80,8 @@ Window::Window(int width, int height, std::string title) : _grab(false)//, mouse
 		glfwSetKeyCallback(_win, key_callback);
 		glfwSetCursorPosCallback(_win, cursor_position_callback);
 		glfwSetMouseButtonCallback(_win, mouse_button_callback);
+		glfwSetFramebufferSizeCallback(_win, win_resize_callback);
+		glfwSwapInterval(0);
 		glewExperimental = GL_TRUE;
 		if (glewInit() != GLEW_OK)
 			_error = "Erreur init glew!";
@@ -115,4 +145,9 @@ bool				Window::isOpen(void)
 GLFWwindow			*Window::getGLFW(void)
 {
 	return (_win);
+}
+
+Game				&Window::getGame(void)
+{
+	return (_game);
 }

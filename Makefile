@@ -9,13 +9,14 @@ MAKE = make --no-print-directory
 NAME = 42run
 LIB_NAME = lpdmath
 LIBS = -lm -framework OPENGL `pkg-config --static --libs glfw3` \
-	`pkg-config --static --libs glew`
+	`pkg-config --static --libs glew` `pkg-config --static --libs libpng`
 SRC = \
 	42run.cpp \
 	window.cpp \
 	shaders.cpp \
 	mesh.cpp \
-
+	game.cpp \
+	texture.cpp
 
 
 
@@ -38,7 +39,8 @@ LIBS += $(addprefix -L , $(LIB_DIR)) $(addprefix -l, $(LIB_NAME))
 
 all: dircreate $(join $(addsuffix /, $(LIB_DIR)), $(addsuffix .a, $(LIB_DIR)))
 	$(MAKE) $(NAME)
-%.a:
+relink:
+%.a: relink
 	$(MAKE) -C $(dir $@)
 
 dircreate:
