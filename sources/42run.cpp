@@ -47,13 +47,12 @@ int main()
 			// 	mesh.end();
 			// }
 			glEnable(GL_DEPTH_TEST);
-			glEnable(GL_CULL_FACE);
-			glCullFace(GL_FRONT);
+			// glEnable(GL_CULL_FACE);
+			// glCullFace(GL_FRONT);
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			win.getGame().init();
 			win.projection = Mat4::Perspective(70.f, 1280.f / 720.f, 0.001f, 1000.f);
-			Mat4 view = Mat4::Translate(0, -1, 0);
 			// Mat4 model = Mat4::Translate(0, 0, 2);
 			double timeLast = glfwGetTime();
 			double timeSecLast = glfwGetTime();
@@ -86,7 +85,9 @@ int main()
 				sample.bind();
 				sample.uniformMat4((GLchar *)"projection", (GLfloat *)&(win.projection));
 				// sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-				sample.uniformMat4((GLchar *)"view", (GLfloat *)&view);
+				// Quat rotQuat = Quat::AxisAngle(Vec3f(1, 0, 0), TORADIANS(-90.f));
+				// Mat4 view = Mat4::Translate(0, -3, 0) * rotQuat.toMat4();
+				// sample.uniformMat4((GLchar *)"view", (GLfloat *)&view);
 				// mesh.render(GL_TRIANGLES);
 				glActiveTexture(GL_TEXTURE0);
 				sample.uniform1i((GLchar *)"uTexture", 0);

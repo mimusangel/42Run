@@ -3,13 +3,28 @@
 
 # include "mesh.hpp"
 # include "shaders.hpp"
-# include "room.hpp"
+
+class Room {
+public:
+	int x;
+	int y;
+	Mesh	*mesh;
+	Room	*front;
+	Room	*left;
+	Room	*right;
+	Room(int px, int py);
+	void	render(Shaders *shaders);
+	Room	*setMesh(Mesh *renderer);
+	Room	*setFront(Room *child);
+	Room	*setLeft(Room *child);
+	Room	*setRight(Room *child);
+};
 
 class Game {
 private:
 	Mesh	*_mesh;
-	Vec3f	_pos;
 	Room	*_room;
+	Vec3f	_rot;
 public:
 	Game();
 	~Game();
