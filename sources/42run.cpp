@@ -12,7 +12,7 @@ int main()
 		cout << "Erreur init glfw!" << endl;
 	else
 	{
-		Window win(1280, 720, "HumanGL");
+		Window win(1280, 720, "42Run");
 		if (win.getError().length() > 0)
 			std::cout << win.getError() << endl;
 		else
@@ -23,6 +23,13 @@ int main()
 			if (!sample.loadVertexShader("sample.vert"))
 				return (0);
 			if (!sample.build())
+				return (0);
+			Shaders player;
+			if (!player.loadFragmentShader("player.frag"))
+				return (0);
+			if (!player.loadVertexShader("player.vert"))
+				return (0);
+			if (!player.build())
 				return (0);
 			// Mesh mesh(2);
 			// if (mesh.isCreated())
@@ -93,6 +100,9 @@ int main()
 				sample.uniform1i((GLchar *)"uTexture", 0);
 				texture.bind();
 				win.getGame().render(&sample);
+				player.bind();
+				player.uniformMat4((GLchar *)"projection", (GLfloat *)&(win.projection));
+				win.getGame().renderPlayer(&player);
 				win.update();
 				frame++;
 				if (now - timeSecLast >= 1.0)

@@ -6,7 +6,7 @@
 # include <iostream>
 
 # ifndef TORADIANS
-#  define TORADIANS(x)	(x * 0.0174533f)
+#  define TORADIANS(x)	(x * (M_PI / 180.0))
 # endif
 
 class Vec2f;

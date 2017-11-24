@@ -9,28 +9,43 @@ public:
 	int x;
 	int y;
 	Mesh	*mesh;
-	Room	*front;
+	Room	*up;
+	Room	*down;
 	Room	*left;
 	Room	*right;
 	Room(int px, int py);
 	void	render(Shaders *shaders);
 	Room	*setMesh(Mesh *renderer);
-	Room	*setFront(Room *child);
+	Room	*setUp(Room *child);
+	Room	*setDowm(Room *child);
 	Room	*setLeft(Room *child);
 	Room	*setRight(Room *child);
+	Room	*getForward(int dir);
+	Room	*getLeft(int dir);
+	Room	*getRight(int dir);
 };
 
 class Game {
 private:
 	Mesh	*_mesh;
+	Mesh	*_player;
 	Room	*_room;
 	Vec3f	_rot;
+	Vec3f	_pos;
+	int		dir;
 public:
+	Vec3f	player;
 	Game();
 	~Game();
 	void	init(void);
 	void	update(void *win);
 	void	render(Shaders *shaders);
+	void	renderPlayer(Shaders *shaders);
+	Vec3f	&getPos(void);
+	Vec3f	&getRot(void);
+	void	forward(void);
+	void	rotLeft(void);
+	void	rotRight(void);
 
 };
 

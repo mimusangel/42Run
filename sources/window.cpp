@@ -28,6 +28,13 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 				glDisable(GL_CULL_FACE);
 			}
 		}
+		if (key == GLFW_KEY_W)
+			win->getGame().forward();
+		if (key == GLFW_KEY_A)
+			win->getGame().rotLeft();
+		if (key == GLFW_KEY_D)
+			win->getGame().rotRight();
+		// win->getGame().getRot().debug();
 	}
 }
 

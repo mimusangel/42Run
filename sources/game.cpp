@@ -5,9 +5,8 @@
 
 
 Room::Room(int px, int py) :
-	x(px), y(py), mesh(nullptr), front(nullptr), left(nullptr), right(nullptr)
+	x(px), y(py), mesh(nullptr), up(nullptr), down(nullptr), left(nullptr), right(nullptr)
 {
-
 }
 
 void	Room::render(Shaders *shaders)
@@ -18,8 +17,10 @@ void	Room::render(Shaders *shaders)
 		shaders->uniformMat4((GLchar *)"model", (GLfloat *)&model);
 		mesh->render(GL_TRIANGLES);
 	}
-	if (front != nullptr)
-		front->render(shaders);
+	if (up != nullptr)
+		up->render(shaders);
+	if (down != nullptr)
+		down->render(shaders);
 	if (left != nullptr)
 		left->render(shaders);
 	if (right != nullptr)
@@ -33,9 +34,15 @@ Room	*Room::setMesh(Mesh *renderer)
 	return (this);
 }
 
-Room	*Room::setFront(Room *child)
+Room	*Room::setUp(Room *child)
 {
-	front = child;
+	up = child;
+	return (this);
+}
+
+Room	*Room::setDowm(Room *child)
+{
+	down = child;
 	return (this);
 }
 
@@ -51,8 +58,38 @@ Room	*Room::setRight(Room *child)
 	return (this);
 }
 
+Room	*Room::getForward(int dir)
+{
+	if (dir == 8)
+		return (up);
+	if (dir == 4)
+		return (left);
+	if (dir == 2)
+		return (down);
+	return (right);
+}
 
+Room	*Room::getLeft(int dir)
+{
+	if (dir == 8)
+		return (left);
+	if (dir == 4)
+		return (down);
+	if (dir == 2)
+		return (right);
+	return (up);
+}
 
+Room	*Room::getRight(int dir)
+{
+	if (dir == 8)
+		return (right);
+	if (dir == 6)
+		return (down);
+	if (dir == 2)
+		return (left);
+	return (up);
+}
 
 
 
@@ -61,12 +98,15 @@ Room	*Room::setRight(Room *child)
 /* ******************** */
 
 Game::Game() :
-	_rot(-90, 0, 0)
-{}
+	 _pos(0, -3, 0), _rot(-90, 0, 0)
+{
+	dir = 8;
+}
 
 Game::~Game()
 {
-
+	delete _mesh;
+	delete _player;
 }
 
 static Mesh	*loadRoad()
@@ -92,47 +132,143 @@ static Mesh	*loadRoad()
 	return (mesh);
 }
 
+static Mesh	*loadPlayer()
+{
+	Mesh *mesh = new Mesh(2);
+	mesh->begin();
+	GLfloat vPos[] = {
+		-0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, -0.5f, -0.5f, -0.5f,
+		0.5f, -0.5f, -0.5f, -0.5f, -0.5f, -0.5f, 0.5f, 0.5f, -0.5f,
+
+		-0.5f, 0.5f, 0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f, 0.5f,
+		0.5f, -0.5f, 0.5f, 0.5f, 0.5f, 0.5f, -0.5f, -0.5f, 0.5f,
+
+		-0.5f, 0.5f, -0.5f, -0.5f, -0.5f, -0.5f, -0.5f, 0.5f, 0.5f,
+		-0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, -0.5f, -0.5f,
+		0.5f, 0.5f, -0.5f, 0.5f, 0.5f, 0.5f, 0.5f, -0.5f, -0.5f,
+		0.5f, -0.5f, 0.5f, 0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f,
+		-0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f, -0.5f, 0.5f, -0.5f,
+		0.5f, 0.5f, -0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, 0.5f,
+		-0.5f, -0.5f, 0.5f, -0.5f, -0.5f, -0.5f, 0.5f, -0.5f, 0.5f,
+		0.5f, -0.5f, -0.5f, 0.5f, -0.5f, 0.5f, -0.5f, -0.5f, -0.5f
+	};
+	GLfloat vColor[] = {
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
+		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
+		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
+		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f
+	};
+	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 36);
+	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 36);
+	mesh->end();
+	return (mesh);
+}
+
 void	Game::init(void)
 {
+	_player = loadPlayer();
 	_mesh = loadRoad();
-	_room = (new Room(0, 0))->setMesh(_mesh)->setFront(
+	_room = (new Room(0, 0))->setMesh(_mesh)->setUp(
 		(new Room(0, 1))->setMesh(_mesh)->setLeft(
 			(new Room(1, 1))->setMesh(_mesh)
 		)->setRight(
-			(new Room(-1, 1))->setMesh(_mesh)
+			(new Room(-1, 1))->setMesh(_mesh)->setLeft(
+				(new Room(-2, 1))->setMesh(_mesh)
+			)
 		)
 	);
 }
 
 void	Game::update(void *win)
 {
-	Window	*window = (Window *)win;
-	if (glfwGetKey(window->getGLFW(), GLFW_KEY_W) == GLFW_PRESS)
-	{
 
-	}
-	if (glfwGetKey(window->getGLFW(), GLFW_KEY_W) == GLFW_PRESS)
-	{
-
-	}
-	if (glfwGetKey(window->getGLFW(), GLFW_KEY_A) == GLFW_PRESS)
-	{
-
-	}
-	if (glfwGetKey(window->getGLFW(), GLFW_KEY_D) == GLFW_PRESS)
-	{
-
-	}
 }
 
 void	Game::render(Shaders *shaders)
 {
 	Quat rotQuat = Quat::Angle(_rot);
-	Mat4 view = Mat4::Translate(0, -3, 0) * rotQuat.toMat4();
+	Mat4 view = Mat4::Translate(-_pos[0] * 2.f, _pos[1], -_pos[2] * 2.f) * rotQuat.toMat4();
 	shaders->uniformMat4((GLchar *)"view", (GLfloat *)&view);
 
 	_room->render(shaders);
 	// Mat4 model = Mat4::Identity();
 	// shaders->uniformMat4((GLchar *)"model", (GLfloat *)&model);
 	// _mesh->render(GL_TRIANGLES);
+}
+
+void	Game::renderPlayer(Shaders *shaders)
+{
+	Quat rotQuat = Quat::Angle(_rot);
+	Mat4 view = Mat4::Translate(-_pos[0] * 2.f, _pos[1], -_pos[2] * 2.f) * rotQuat.toMat4();
+	shaders->uniformMat4((GLchar *)"view", (GLfloat *)&view);
+
+	Mat4 model = Mat4::Translate(_pos[0] * 4.f, .5f, _pos[2] * 4.f) * Mat4::Scale(Vec3f(0.5f));
+	shaders->uniformMat4((GLchar *)"model", (GLfloat *)&model);
+	_player->render(GL_TRIANGLES);
+}
+
+Vec3f	&Game::getPos(void)
+{
+	return (_pos);
+}
+
+Vec3f	&Game::getRot(void)
+{
+	return (_rot);
+}
+
+void	Game::forward(void)
+{
+	Room *forward;
+	if (_room != nullptr && (forward = _room->getForward(dir)) != nullptr)
+	{
+		delete _room;
+		_room = forward;
+		std::cout << (forward != nullptr) << std::endl;
+		Vec3f dir(-sin(TORADIANS(_rot[1])), 0.f, cos(TORADIANS(_rot[1])));
+		_pos += dir;
+	}
+
+}
+
+void	Game::rotLeft(void)
+{
+	Room *left;
+	if (_room != nullptr && (left = _room->getLeft(dir)) != nullptr)
+	{
+		_rot[1] += 90.0;
+		if (dir == 8)
+			dir = 4;
+		else if (dir == 4)
+			dir = 2;
+		else if (dir == 2)
+			dir = 6;
+		else
+			dir = 8;
+	}
+}
+
+void	Game::rotRight(void)
+{
+	Room *right;
+	if (_room != nullptr && (right = _room->getRight(dir)) != nullptr)
+	{
+		_rot[1] -= 90.0;
+		if (dir == 8)
+			dir = 6;
+		else if (dir == 6)
+			dir = 2;
+		else if (dir == 2)
+			dir = 4;
+		else
+			dir = 8;
+	}
 }
