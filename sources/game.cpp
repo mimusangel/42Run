@@ -1,12 +1,15 @@
+#include <cstdlib>
+#include <cmath>
 #include "game.hpp"
 #include "window.hpp"
 
-
-
-
 Room::Room(int px, int py) :
 	x(px), y(py), mesh(nullptr), up(nullptr), down(nullptr), left(nullptr), right(nullptr)
+{}
+
+Room::~Room()
 {
+
 }
 
 void	Room::render(Shaders *shaders)
@@ -40,7 +43,7 @@ Room	*Room::setUp(Room *child)
 	return (this);
 }
 
-Room	*Room::setDowm(Room *child)
+Room	*Room::setDown(Room *child)
 {
 	down = child;
 	return (this);
@@ -98,7 +101,7 @@ Room	*Room::getRight(int dir)
 /* ******************** */
 
 Game::Game() :
-	 _pos(0, -3, 0), _rot(-90, 0, 0)
+	 _pos(0, -10, 0), _rot(-90, 0, 0)
 {
 	dir = 8;
 }
@@ -177,19 +180,42 @@ void	Game::init(void)
 	_player = loadPlayer();
 	_mesh = loadRoad();
 	_room = (new Room(0, 0))->setMesh(_mesh)->setUp(
-		(new Room(0, 1))->setMesh(_mesh)->setLeft(
-			(new Room(1, 1))->setMesh(_mesh)
-		)->setRight(
-			(new Room(-1, 1))->setMesh(_mesh)->setLeft(
-				(new Room(-2, 1))->setMesh(_mesh)
-			)
-		)
+		(new Room(0, 1))->setMesh(_mesh)
 	);
+	generate();
+}
+
+void	Game::generate(void)
+{
+	Room *tmp = _room->getForward(dir);
+	while (std::rand() % 3 >= 1)
+	{
+		if (dir == 8)
+			tmp->setUp((new Room(tmp->x, tmp->y + 1))->setMesh(_mesh));
+		else if (dir == 4)
+			tmp->setLeft((new Room(tmp->x - 1, tmp->y))->setMesh(_mesh));
+		else if (dir == 6)
+			tmp->setRight((new Room(tmp->x + 1, tmp->y))->setMesh(_mesh));
+		else
+			tmp->setDown((new Room(tmp->x, tmp->y - 1))->setMesh(_mesh));
+		tmp = tmp->getForward(dir);
+	}
+	if (dir == 8 || dir == 2)
+	{
+		tmp->setLeft((new Room(tmp->x - 1, tmp->y))->setMesh(_mesh));
+		tmp->setRight((new Room(tmp->x + 1, tmp->y))->setMesh(_mesh));
+	}
+	if (dir == 4 || dir == 6)
+	{
+		tmp->setUp((new Room(tmp->x, tmp->y + 1))->setMesh(_mesh));
+		tmp->setDown((new Room(tmp->x, tmp->y - 1))->setMesh(_mesh));
+	}
+
 }
 
 void	Game::update(void *win)
 {
-
+	forward();
 }
 
 void	Game::render(Shaders *shaders)
@@ -230,13 +256,19 @@ void	Game::forward(void)
 	Room *forward;
 	if (_room != nullptr && (forward = _room->getForward(dir)) != nullptr)
 	{
-		delete _room;
-		_room = forward;
-		std::cout << (forward != nullptr) << std::endl;
-		Vec3f dir(-sin(TORADIANS(_rot[1])), 0.f, cos(TORADIANS(_rot[1])));
-		_pos += dir;
+		Vec3f vecDir(-sin(TORADIANS(_rot[1])), 0.f, cos(TORADIANS(_rot[1])));
+		_pos += vecDir * 0.05;
+		// std::cout << ((float)forward->x - 0.5f) << ", " << ((float)forward->x + 0.5f) << std::endl;
+		// std::cout << ((float)forward->y - 0.5f) << ", " << ((float)forward->y + 0.5f) << std::endl;
+		// _pos.debug();
+		// std::cout << (((float)forward->x - 0.5f) <= _pos[0] && ((float)forward->x + 0.5f) > _pos[0]) << " // " << (((float)forward->y - 0.5f) >= _pos[2] && ((float)forward->y + 0.5f )< _pos[2]) << std::endl;
+		if ((float)forward->x - .5f <= _pos[0] && (float)forward->x + .5f > _pos[0]
+			&& (float)forward->y - .5f <= _pos[2] && (float)forward->y + .5f > _pos[2])
+		{
+			delete _room;
+			_room = forward;
+		}
 	}
-
 }
 
 void	Game::rotLeft(void)
@@ -253,6 +285,7 @@ void	Game::rotLeft(void)
 			dir = 6;
 		else
 			dir = 8;
+		generate();
 	}
 }
 
@@ -270,5 +303,6 @@ void	Game::rotRight(void)
 			dir = 4;
 		else
 			dir = 8;
+		generate();
 	}
 }

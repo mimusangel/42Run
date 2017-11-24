@@ -14,10 +14,11 @@ public:
 	Room	*left;
 	Room	*right;
 	Room(int px, int py);
+	~Room();
 	void	render(Shaders *shaders);
 	Room	*setMesh(Mesh *renderer);
 	Room	*setUp(Room *child);
-	Room	*setDowm(Room *child);
+	Room	*setDown(Room *child);
 	Room	*setLeft(Room *child);
 	Room	*setRight(Room *child);
 	Room	*getForward(int dir);
@@ -38,6 +39,7 @@ public:
 	Game();
 	~Game();
 	void	init(void);
+	void	generate(void);
 	void	update(void *win);
 	void	render(Shaders *shaders);
 	void	renderPlayer(Shaders *shaders);
