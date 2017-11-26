@@ -573,35 +573,7 @@ Game::~Game()
 
 void				Game::renderStart(void)
 {
-	glDisable(GL_DEPTH_TEST);
-	_fontShader.bind();
-	_fontShader.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->ortho));
-	glActiveTexture(GL_TEXTURE0);
-	_fontShader.uniform1i((GLchar *)"uTexture", 0);
-	_font->bind();
-	static float u = 1.f / 16.f;
-	static float v = 1.f / 8.f;
-	const char *str = "42RUN";
-	int i = -1;
-	Mat4 model;
-	while (str[++i])
-	{
-		model = Mat4::Translate(Vec2f(50.f + (i + 1.f) * 50.f, 50.f));
-		_fontShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-		int k = (int)str[i] - 1;
-		_fontShader.uniform2fv((GLchar *)"id", (float)(k % 16) * u, (float)(k / 16) * v);
-		_meshFont->render(GL_TRIANGLES);
-	}
-	str = "PRESS SPACE TO RUN";
-	i = -1;
-	while (str[++i])
-	{
-		model = Mat4::Translate(Vec2f(50.f + (i + 1.f) * 50.f, 620.f));
-		_fontShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-		int k = (int)str[i] - 1;
-		_fontShader.uniform2fv((GLchar *)"id", (float)(k % 16) * u, (float)(k / 16) * v);
-		_meshFont->render(GL_TRIANGLES);
-	}
+
 }
 
 void				Game::updateStart(void)
