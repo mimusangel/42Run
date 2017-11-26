@@ -15,8 +15,9 @@ SRC = \
 	window.cpp \
 	shaders.cpp \
 	mesh.cpp \
+	texture.cpp \
 	game.cpp \
-	texture.cpp 
+	room.cpp
 
 
 
@@ -39,6 +40,7 @@ LIBS += $(addprefix -L , $(LIB_DIR)) $(addprefix -l, $(LIB_NAME))
 
 all: dircreate $(join $(addsuffix /, $(LIB_DIR)), $(addsuffix .a, $(LIB_DIR)))
 	$(MAKE) $(NAME)
+
 relink:
 %.a: relink
 	$(MAKE) -C $(dir $@)

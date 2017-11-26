@@ -1,54 +1,62 @@
 #ifndef GAME_HPP
-#define GAME_HPP
+# define GAME_HPP
 
-# include "mesh.hpp"
+# include <vector>
+# include <iostream>
+# include <stdexcept>
+# include "window.hpp"
 # include "shaders.hpp"
+# include "mesh.hpp"
+# include "texture.hpp"
 
 class Room {
+private:
+	Vec3f	_pos;
+	Mesh	*_render;
+	int		_item;
+	Vec3f	_itemPos;
+	int		_type;
 public:
-	int x;
-	int y;
-	Mesh	*mesh;
-	Room	*up;
-	Room	*down;
-	Room	*left;
-	Room	*right;
-	Room(int px, int py);
-	~Room();
-	void	render(Shaders *shaders);
-	Room	*setMesh(Mesh *renderer);
-	Room	*setUp(Room *child);
-	Room	*setDown(Room *child);
-	Room	*setLeft(Room *child);
-	Room	*setRight(Room *child);
-	Room	*getForward(int dir);
-	Room	*getLeft(int dir);
-	Room	*getRight(int dir);
+	Room(Mesh *render, int type = 0, const Vec3f pos = Vec3f());
+	Mesh 	*getRender(void);
+	Vec3f	&getPos(void);
+	int		getItem(void);
+	void	setItem(int item);
+	Vec3f	&getItemPos(void);
+	void	setItemPos(const Vec3f &pos);
+	bool	itemCollid(Vec3f &pos, Vec3f &size);
+	int		getType(void);
 };
 
 class Game {
 private:
-	Mesh	*_mesh;
-	Mesh	*_player;
-	Room	*_room;
-	Vec3f	_rot;
-	Vec3f	_pos;
-	int		dir;
+	Window				*_win;
+	Shaders				_sample;
+	Mesh				*_road[4];
+	Mesh				*_cluster[1];
+	Mesh				*_trash;
+	Texture				*_texture;
+	std::vector<Room *>	_rooms;
+	Mesh				*_player;
+	Vec3f				_playerPos;
+	Vec3f				_playerOffset;
+	float				_velocity;
+	int					_state;
+	float				_fakeRot;
+	void				renderStart(void);
+	void				renderGame(void);
+	void				renderLost(void);
+	void				updateStart(void);
+	void				updateGame(void);
+	void				updateLost(void);
+	void				reset(void);
 public:
-	Vec3f	player;
-	Game();
+	Game(Window *win);
 	~Game();
-	void	init(void);
-	void	generate(void);
-	void	update(void *win);
-	void	render(Shaders *shaders);
-	void	renderPlayer(Shaders *shaders);
-	Vec3f	&getPos(void);
-	Vec3f	&getRot(void);
-	void	forward(void);
-	void	rotLeft(void);
-	void	rotRight(void);
-
+	void	render(void);
+	void	update(void);
+	void	addRoom(void);
+	void	nextState(void);
 };
 
 #endif

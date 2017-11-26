@@ -1,4 +1,5 @@
 #include "window.hpp"
+#include "game.hpp"
 
 /*
 ** Static function Callback
@@ -28,12 +29,12 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 				glDisable(GL_CULL_FACE);
 			}
 		}
-		if (key == GLFW_KEY_W)
-			win->getGame().forward();
-		if (key == GLFW_KEY_A)
-			win->getGame().rotLeft();
-		if (key == GLFW_KEY_D)
-			win->getGame().rotRight();
+		if (key == GLFW_KEY_SPACE)
+		{
+			Game *g = (Game *)win->getGamePointer();
+			if (g != nullptr)
+				g->nextState();
+		}
 		// win->getGame().getRot().debug();
 	}
 }
@@ -75,6 +76,7 @@ static void win_resize_callback(GLFWwindow *window, int width, int height)
 
 Window::Window(int width, int height, std::string title) : _grab(false)//, mouse(0), dirMouse(0)
 {
+	_gamePointer = nullptr;
 	glfwWindowHint(GLFW_SAMPLES, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
@@ -154,7 +156,12 @@ GLFWwindow			*Window::getGLFW(void)
 	return (_win);
 }
 
-Game				&Window::getGame(void)
+void				*Window::getGamePointer(void)
 {
-	return (_game);
+	return (_gamePointer);
+}
+
+void				Window::setGamePointer(void *pointer)
+{
+	_gamePointer = pointer;
 }

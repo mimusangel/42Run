@@ -10,6 +10,7 @@ _width(width), _height(height), _data(data)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glBindTexture(GL_TEXTURE_2D, 0);
+	delete[] data;
 }
 
 Texture::~Texture()
@@ -22,7 +23,7 @@ void		Texture::bind(void)
 	glBindTexture(GL_TEXTURE_2D, _textureID);
 }
 
-Texture		Texture::LoadBMP(const char *path)
+Texture		*Texture::LoadBMP(const char *path)
 {
 	unsigned char	header[54];
 	unsigned int	dataPos;
@@ -49,10 +50,10 @@ Texture		Texture::LoadBMP(const char *path)
 	data = new unsigned char [imageSize];
 	fread(data, 1, imageSize, file);
 	fclose(file);
-	return (Texture(width, height, data));
+	return (new Texture(width, height, data));
 }
 
-Texture		Texture::LoadPNG(const char *path)
+Texture		*Texture::LoadPNG(const char *path)
 {
 	int width;
 	int height;
@@ -95,5 +96,5 @@ Texture		Texture::LoadPNG(const char *path)
 	}
 	png_read_image(png, row_pointers);
 	fclose(fp);
-	return (Texture(width, height, (unsigned char *)row_pointers, GL_BGRA));
+	return (new Texture(width, height, (unsigned char *)row_pointers, GL_BGRA));
 }

@@ -2,7 +2,6 @@
 # define WINDOW_HPP
 
 # include "global.hpp"
-# include "game.hpp"
 
 class Window {
 
@@ -10,7 +9,7 @@ private:
 	GLFWwindow			*_win;
 	std::string			_error;
 	bool				_grab;
-	Game				_game;
+	void				*_gamePointer;
 
 public:
 	Vec2f				mouse;
@@ -26,7 +25,9 @@ public:
 	void				setGrab(bool grab);
 	bool				isOpen(void);
 	GLFWwindow			*getGLFW(void);
-	Game				&getGame(void);
+	void				*getGamePointer(void);
+	void				setGamePointer(void *pointer);
+
 };
 
 #endif

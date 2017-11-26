@@ -18,8 +18,8 @@ public:
 	~Texture();
 	void	bind(void);
 
-	static Texture	LoadBMP(const char *path);
-	static Texture	LoadPNG(const char *path);
+	static Texture	*LoadBMP(const char *path);
+	static Texture	*LoadPNG(const char *path);
 };
 
 #endif
