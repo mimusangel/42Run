@@ -38,8 +38,10 @@ private:
 	Texture				*_textures[2];
 	std::vector<Room *>	_rooms;
 	Mesh				*_player;
+	Shaders				_playerShader;
 	Vec3f				_playerPos;
 	Vec3f				_playerOffset;
+	Texture				*_font;
 	float				_velocity;
 	int					_state;
 	float				_fakeRot;

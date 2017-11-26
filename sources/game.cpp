@@ -493,7 +493,13 @@ Game::Game(Window *win) : _win(win)
 	if (!_sample.loadVertexShader("shaders/sample.vert"))
 		throw std::logic_error("Erreur chargement sample.vert");
 	if (!_sample.build())
-		throw std::logic_error("Erreur compilation shader(sample)");
+		throw std::logic_error("Erreur compilation shader(player)");
+	// if (!_playerShader.loadFragmentShader("shaders/player.frag"))
+	// 	throw std::logic_error("Erreur chargement player.frag");
+	// if (!_playerShader.loadVertexShader("shaders/player.vert"))
+	// 	throw std::logic_error("Erreur chargement player.vert");
+	// if (!_playerShader.build())
+	// 	throw std::logic_error("Erreur compilation shader(player)");
 	_cluster[0] = loadClusterRoad();
 	_cluster[1] = loadClusterRoadEnd();
 	_road[0] = loadRoad();
@@ -504,8 +510,8 @@ Game::Game(Window *win) : _win(win)
 	_items[0] = loadTrash();
 	_items[1] = loadPoto();
 	_textures[0] = Texture::LoadBMP("textures/uvtemplate.bmp");
-	// _textures[1] = Texture::LoadBMP("textures/poto.bmp");
-	// Texture font = Texture::LoadPNG("font.png");
+	_textures[1] = Texture::LoadBMP("textures/poto.bmp");
+	_font = Texture::LoadPNG("textures/font.png");
 	_playerPos = Vec3f(0, 0.5, 0);
 	_fakeRot = 0.f;
 	while (_rooms.size() < 10)
@@ -520,7 +526,7 @@ Game::~Game()
 		_rooms.pop_back();
 	}
 	delete _textures[0];
-	// delete _textures[1];
+	delete _textures[1];
 	delete _road[0];
 	delete _road[1];
 	delete _road[2];
@@ -530,6 +536,7 @@ Game::~Game()
 	delete _player;
 	delete _items[0];
 	delete _items[1];
+	delete _font;
 }
 
 
@@ -564,9 +571,12 @@ void				Game::renderGame(void)
 		// 	_road[0]->render(GL_TRIANGLES);
 		if ((*it)->getItem() >= 0)
 		{
+			if ((*it)->getItem() == 1)
+				_textures[1]->bind();
 			model = Mat4::Translate((*it)->getPos() + (*it)->getItemPos());
 			_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 			_items[(*it)->getItem()]->render(GL_TRIANGLES);
+			_textures[0]->bind();
 		}
 		if ((*it)->getType() > 0)
 		{
@@ -615,6 +625,9 @@ void				Game::renderGame(void)
 			break ;
 		}
 	}
+	// _playerShader.bind();
+	// _playerShader.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->projection));
+	// _playerShader.uniformMat4((GLchar *)"view", (GLfloat *)&view);
 	model = Mat4::Translate(_playerPos + _playerOffset);
 	_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 	_player->render(GL_TRIANGLES);
