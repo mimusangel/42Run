@@ -42,6 +42,8 @@ private:
 	Vec3f				_playerPos;
 	Vec3f				_playerOffset;
 	Texture				*_font;
+	Shaders				_fontShader;
+	Mesh				*_meshFont;
 	float				_velocity;
 	int					_state;
 	float				_fakeRot;

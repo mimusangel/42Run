@@ -20,6 +20,8 @@ public:
 
 	static Texture	*LoadBMP(const char *path);
 	static Texture	*LoadPNG(const char *path);
+	inline int	getWidth(void) { return(_width); }
+	inline int	getHeight(void) { return(_height); }
 };
 
 #endif

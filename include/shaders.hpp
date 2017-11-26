@@ -25,6 +25,7 @@ public:
 	void			uniformMat4(GLchar *name, GLfloat *mat);
 	void			uniform1f(GLchar *name, GLfloat value);
 	void			uniform2f(GLchar *name, GLfloat *value);
+	void			uniform2fv(GLchar *name, GLfloat x, GLfloat y);
 	void			uniform3f(GLchar *name, GLfloat *value);
 	void			uniform4f(GLchar *name, GLfloat *value);
 	void			uniform1i(GLchar *name, GLint value);

@@ -314,33 +314,33 @@ static Mesh	*loadPlayer()
 	GLfloat vPos[] = {
 		-.25f, .5f, -.25f, .25f, .5f, -.25f, -.25f, .0f, -.25f,
 		.25f, .0f, -.25f, -.25f, .0f, -.25f, .25f, .5f, -.25f,
-		// -.25f, .5f, .25f, -.25f, .0f, .25f, .25f, .5f, .25f,
-		// .25f, .0f, .25f, .25f, .5f, .25f, -.25f, .0f, .25f,
-		// -.25f, .5f, -.25f, -.25f, .0f, -.25f, -.25f, .5f, .25f,
-		// -.25f, .0f, .25f, -.25f, .5f, .25f, -.25f, .0f, -.25f,
-		// .25f, .5f, -.25f, .25f, .5f, .25f, .25f, .0f, -.25f,
-		// .25f, .0f, .25f, .25f, .0f, -.25f, .25f, .5f, .25f,
-		// -.25f, .5f, .25f, .25f, .5f, .25f, -.25f, .5f, -.25f,
-		// .25f, .5f, -.25f, -.25f, .5f, -.25f, .25f, .5f, .25f,
-		// -.25f, .0f, .25f, -.25f, .0f, -.25f, .25f, .0f, .25f,
-		// .25f, .0f, -.25f, .25f, .0f, .25f, -.25f, .0f, -.25f
+		-.25f, .5f, .25f, -.25f, .0f, .25f, .25f, .5f, .25f,
+		.25f, .0f, .25f, .25f, .5f, .25f, -.25f, .0f, .25f,
+		-.25f, .5f, -.25f, -.25f, .0f, -.25f, -.25f, .5f, .25f,
+		-.25f, .0f, .25f, -.25f, .5f, .25f, -.25f, .0f, -.25f,
+		.25f, .5f, -.25f, .25f, .5f, .25f, .25f, .0f, -.25f,
+		.25f, .0f, .25f, .25f, .0f, -.25f, .25f, .5f, .25f,
+		-.25f, .5f, .25f, .25f, .5f, .25f, -.25f, .5f, -.25f,
+		.25f, .5f, -.25f, -.25f, .5f, -.25f, .25f, .5f, .25f,
+		-.25f, .0f, .25f, -.25f, .0f, -.25f, .25f, .0f, .25f,
+		.25f, .0f, -.25f, .25f, .0f, .25f, -.25f, .0f, -.25f
 	};
 	GLfloat vColor[] = {
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
-		// 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
-		// 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
-		// .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
-		// .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
-		// .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
-		// .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
-		// .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
-		// .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
-		// .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
-		// .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
+		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
+		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
+		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f
 	};
-	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 6);
-	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 6);
+	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 36);
+	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 36);
 	mesh->end();
 	return (mesh);
 }
@@ -486,6 +486,28 @@ static Mesh	*loadTrash()
 	return (mesh);
 }
 
+static Mesh	*loadFont(void)
+{
+	float u = 1.f / 16.f;
+	float v = 1.f / 8.f;
+	Mesh *mesh = new Mesh(3);
+	mesh->begin();
+	GLfloat vPos[] = {
+		0.f, 0.f,	50.f, 0.f,	50.f, 50.f,
+		50.f, 50.f,	0.f, 50.f,	0.f, 0.f,
+	};
+	GLfloat vTex[] = {
+		0.f, 0.f,	u, 0.f,	u, v,
+		u, v,		0.f, v,	0.f, 0.f
+		// u * 1.f, v * 4.f,	u * 2.f, v * 4.f,	u * 2.f, v * 5.f,
+		// u * 2.f, v * 5.f,	u * 1.f, v * 5.f,	u * 1.f, v * 4.f
+	};
+	mesh->add(0, GL_FLOAT, 2, (void *)vPos, 6);
+	mesh->add(1, GL_FLOAT, 2, (void *)vTex, 6);
+	mesh->end();
+	return (mesh);
+}
+
 Game::Game(Window *win) : _win(win)
 {
 	if (!_sample.loadFragmentShader("shaders/sample.frag"))
@@ -494,12 +516,19 @@ Game::Game(Window *win) : _win(win)
 		throw std::logic_error("Erreur chargement sample.vert");
 	if (!_sample.build())
 		throw std::logic_error("Erreur compilation shader(player)");
-	// if (!_playerShader.loadFragmentShader("shaders/player.frag"))
-	// 	throw std::logic_error("Erreur chargement player.frag");
-	// if (!_playerShader.loadVertexShader("shaders/player.vert"))
-	// 	throw std::logic_error("Erreur chargement player.vert");
-	// if (!_playerShader.build())
-	// 	throw std::logic_error("Erreur compilation shader(player)");
+	if (!_playerShader.loadFragmentShader("shaders/player.frag"))
+		throw std::logic_error("Erreur chargement player.frag");
+	if (!_playerShader.loadVertexShader("shaders/player.vert"))
+		throw std::logic_error("Erreur chargement player.vert");
+	if (!_playerShader.build())
+		throw std::logic_error("Erreur compilation shader(font)");
+	if (!_fontShader.loadFragmentShader("shaders/font.frag"))
+		throw std::logic_error("Erreur chargement font.frag");
+	if (!_fontShader.loadVertexShader("shaders/font.vert"))
+		throw std::logic_error("Erreur chargement font.vert");
+	if (!_fontShader.build())
+		throw std::logic_error("Erreur compilation shader(font)");
+
 	_cluster[0] = loadClusterRoad();
 	_cluster[1] = loadClusterRoadEnd();
 	_road[0] = loadRoad();
@@ -512,6 +541,7 @@ Game::Game(Window *win) : _win(win)
 	_textures[0] = Texture::LoadBMP("textures/uvtemplate.bmp");
 	_textures[1] = Texture::LoadBMP("textures/poto.bmp");
 	_font = Texture::LoadPNG("textures/font.png");
+	_meshFont = loadFont();
 	_playerPos = Vec3f(0, 0.5, 0);
 	_fakeRot = 0.f;
 	while (_rooms.size() < 10)
@@ -536,6 +566,7 @@ Game::~Game()
 	delete _player;
 	delete _items[0];
 	delete _items[1];
+	delete _meshFont;
 	delete _font;
 }
 
@@ -552,7 +583,7 @@ void				Game::renderGame(void)
 {
 	static Mat4 identity = Mat4::Identity();
 	Mat4 viewRot = Quat::Angle(Vec3f(-22.5, _fakeRot, 0)).toMat4();
-
+	glEnable(GL_DEPTH_TEST);
 	Mat4 view = Mat4::Translate(0, -1.5, 1 - _playerPos[2]) * viewRot;
 	_sample.bind();
 	_sample.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->projection));
@@ -625,12 +656,36 @@ void				Game::renderGame(void)
 			break ;
 		}
 	}
-	// _playerShader.bind();
-	// _playerShader.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->projection));
-	// _playerShader.uniformMat4((GLchar *)"view", (GLfloat *)&view);
+	_playerShader.bind();
+	_playerShader.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->projection));
+	_playerShader.uniformMat4((GLchar *)"view", (GLfloat *)&view);
 	model = Mat4::Translate(_playerPos + _playerOffset);
-	_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
+	_playerShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 	_player->render(GL_TRIANGLES);
+
+	/* ******************* */
+	/* *RENDER 2D        * */
+	/* ******************* */
+	glDisable(GL_DEPTH_TEST);
+	_fontShader.bind();
+	_fontShader.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->ortho));
+	glActiveTexture(GL_TEXTURE0);
+	_fontShader.uniform1i((GLchar *)"uTexture", 0);
+	_font->bind();
+	static float u = 1.f / 16.f;
+	static float v = 1.f / 8.f;
+	int j = (int)_playerPos[2];
+	int i = 0;
+	while (j != 0)
+	{
+		model = Mat4::Translate(Vec2f(1280.f - (i + 1.f) * 50.f, 0));
+		_fontShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
+		int k = 47 + (j % 10);
+		j /= 10;
+		_fontShader.uniform2fv((GLchar *)"id", (float)(k % 16) * u, (float)(k / 16) * v);
+		_meshFont->render(GL_TRIANGLES);
+		i++;
+	}
 }
 
 void				Game::updateGame(void)
@@ -746,7 +801,37 @@ void				Game::reset(void)
 
 void				Game::renderLost(void)
 {
-
+	glDisable(GL_DEPTH_TEST);
+	_fontShader.bind();
+	_fontShader.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->ortho));
+	glActiveTexture(GL_TEXTURE0);
+	_fontShader.uniform1i((GLchar *)"uTexture", 0);
+	_font->bind();
+	static float u = 1.f / 16.f;
+	static float v = 1.f / 8.f;
+	const char *str = "YOU LOST !";
+	int i = -1;
+	Mat4 model;
+	while (str[++i])
+	{
+		model = Mat4::Translate(Vec2f(50.f + (i + 1.f) * 50.f, 50.f));
+		_fontShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
+		int k = (int)str[i];
+		_fontShader.uniform2fv((GLchar *)"id", (float)(k % 16) * u, (float)(k / 16) * v);
+		_meshFont->render(GL_TRIANGLES);
+	}
+	// int j = (int)_playerPos[2];
+	// int i = 0;
+	// while (j != 0)
+	// {
+	// 	model = Mat4::Translate(Vec2f(1280.f - (i + 1.f) * 50.f, 0));
+	// 	_fontShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
+	// 	int k = 47 + (j % 10);
+	// 	j /= 10;
+	// 	_fontShader.uniform2fv((GLchar *)"id", (float)(k % 16) * u, (float)(k / 16) * v);
+	// 	_meshFont->render(GL_TRIANGLES);
+	// 	i++;
+	// }
 }
 
 void				Game::updateLost(void)

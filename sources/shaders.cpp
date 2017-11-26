@@ -219,6 +219,12 @@ void			Shaders::uniform2f(GLchar *name, GLfloat *value)
 	glUniform2fv(id, 1, value);
 }
 
+void			Shaders::uniform2fv(GLchar *name, GLfloat x, GLfloat y)
+{
+	GLint id = glGetUniformLocation(_program, name);
+	glUniform2f(id, x, y);
+}
+
 void			Shaders::uniform3f(GLchar *name, GLfloat *value)
 {
 	GLint id = glGetUniformLocation(_program, name);

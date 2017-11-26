@@ -45,6 +45,7 @@ int main()
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			win.projection = Mat4::Perspective(70.f, 1280.f / 720.f, 0.001f, 1000.f);
+			win.ortho = Mat4::Orthographic(0.f, 1280.f, 720.f, 0.f, 0.f, 1.f);
 			// Mat4 model = Mat4::Translate(0, 0, 2);
 			double timeLast = glfwGetTime();
 			double timeSecLast = glfwGetTime();
