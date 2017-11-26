@@ -33,7 +33,7 @@ private:
 	Window				*_win;
 	Shaders				_sample;
 	Mesh				*_road[4];
-	Mesh				*_cluster[1];
+	Mesh				*_cluster[2];
 	Mesh				*_trash;
 	Texture				*_texture;
 	std::vector<Room *>	_rooms;
