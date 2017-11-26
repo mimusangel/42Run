@@ -38,13 +38,27 @@ void	Room::setItemPos(const Vec3f &pos)
 
 bool	Room::itemCollid(Vec3f &pos, Vec3f &size)
 {
+	Vec3f	pMin = pos - size;
+	pMin[1] -= size[1];
+	Vec3f	pMax = pos + size;
 	if (_item == 0)
 	{
-		Vec3f	pMin = pos - size;
-		pMin[1] -= size[1];
-		Vec3f	pMax = pos + size;
 		Vec3f	iMin = _pos + (_itemPos - Vec3f(.15f, .0f, .15f));
 		Vec3f	iMax = _pos + (_itemPos + Vec3f(.85f, .7f, .15f));
+		if ((pMin[0] >= iMax[0])
+			|| (pMax[0] <= iMin[0])
+			|| (pMin[1] >= iMax[1])
+			|| (pMax[1] <= iMin[1])
+			|| (pMin[2] >= iMax[2])
+			|| (pMax[2] <= iMin[2]))
+			return (false);
+	   	else
+			return (true);
+	}
+	if (_item == 1)
+	{
+		Vec3f	iMin = _pos + (_itemPos - Vec3f(.4f, .0f, .4f));
+		Vec3f	iMax = _pos + (_itemPos + Vec3f(.4f, 2.f, .4f));
 		if ((pMin[0] >= iMax[0])
 			|| (pMax[0] <= iMin[0])
 			|| (pMin[1] >= iMax[1])

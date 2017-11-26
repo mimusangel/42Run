@@ -50,58 +50,82 @@ static Mesh	*loadClusterRoad()
 		1.f, 0.f, 1.f,		1.f, 0.f, -1.f,		-1.f, 0.f, -1.f,
 		-1.f, 2.f, -1.f,	1.f, 2.f, 1.f,		-1.f, 2.f, 1.f,
 		1.f, 2.f, 1.f,		-1.f, 2.f, -1.f,	1.f, 2.f, -1.f,
+
 		-3.f, 0.f, -1.f,	-3.f, 0.f, 1.f,		-1.f, 0.f, 1.f,
 		-1.f, 0.f, 1.f,		-1.f, 0.f, -1.f,	-3.f, 0.f, -1.f,
 		-3.f, 2.f, -1.f,	-1.f, 2.f, 1.f,		-3.f, 2.f, 1.f,
 		-1.f, 2.f, 1.f,		-3.f, 2.f, -1.f,	-1.f, 2.f, -1.f,
+
 		1.f, 0.f, -1.f,		1.f, 0.f, 1.f,		3.f, 0.f, 1.f,
 		3.f, 0.f, 1.f,		3.f, 0.f, -1.f,		1.f, 0.f, -1.f,
 		1.f, 2.f, -1.f,		3.f, 2.f, 1.f,		1.f, 2.f, 1.f,
 		3.f, 2.f, 1.f,		1.f, 2.f, -1.f,		3.f, 2.f, -1.f,
+
 		-3.f, 0.f, -1.f,	-3.f, 2.f, -1.f,	-3.f, 2.f, 1.f,
 		-3.f, 2.f, 1.f,		-3.f, 0.f, 1.f,		-3.f, 0.f, -1.f,
 		3.f, 0.f, -1.f,		3.f, 2.f, 1.f,		3.f, 2.f, -1.f,
 		3.f, 2.f, 1.f,		3.f, 0.f, -1.f,		3.f, 0.f, 1.f,
+
+		-3.f, 0.f, -0.f,	-3.f, 1.f, -0.f,	-1.f, 1.f, -0.f,
+		-1.f, 1.f, -0.f,	-1.f, 0.f, -0.f,	-3.f, 0.f, -0.f,
+		1.f, 0.f, -0.f,		1.f, 1.f, -0.f,		3.f, 1.f, -0.f,
+		3.f, 1.f, -0.f,		3.f, 0.f, -0.f,		1.f, 0.f, -0.f,
 	};
 	GLfloat vColor[] = {
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+
 		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
 		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
 		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
 		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
+
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
 	};
 	GLfloat vTex[] = {
 		0.f, 1.f, 0.f, 0.f, 1.f, 0.f,
 		1.f, 0.f, 1.f, 1.f, 0.f, 1.f,
 		0.f, 1.f, 1.f, 0.f, 0.f, 0.f,
 		1.f, 0.f, 0.f, 1.f, 1.f, 1.f,
+
 		0.f, 1.f, 0.f, 0.f, 1.f, 0.f,
 		1.f, 0.f, 1.f, 1.f, 0.f, 1.f,
 		0.f, 1.f, 1.f, 0.f, 0.f, 0.f,
 		1.f, 0.f, 0.f, 1.f, 1.f, 1.f,
+
 		0.f, 1.f, 0.f, 0.f, 1.f, 0.f,
 		1.f, 0.f, 1.f, 1.f, 0.f, 1.f,
 		0.f, 1.f, 1.f, 0.f, 0.f, 0.f,
 		1.f, 0.f, 0.f, 1.f, 1.f, 1.f,
+
 		0.f, 0.f, 0.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 0.f, 0.f, 0.f,
 		0.f, 0.f, 1.f, 1.f, 0.f, 1.f,
 		1.f, 1.f, 0.f, 0.f, 1.f, 0.f,
+
+		0.f, .5f,	0.f, 1.f,	1.f, 1.f,
+		1.f, 1.f,	1.f, .5f, 	0.f, .5f,
+		0.f, .5f,	0.f, 1.f,	1.f, 1.f,
+		1.f, 1.f,	1.f, .5f, 	0.f, .5f,
 	};
-	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 48);
-	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 48);
-	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 48);
+	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 60);
+	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 60);
+	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 60);
 	mesh->end();
 	return (mesh);
 }
@@ -111,15 +135,15 @@ static Mesh	*loadClusterRoadEnd()
 	Mesh *mesh = new Mesh(3);
 	mesh->begin();
 	GLfloat vPos[] = {
-		// -1.f, 0.f, -1.f,	-1.f, 0.f, 1.f,		1.f, 0.f, 1.f,
-		// 1.f, 0.f, 1.f,		1.f, 0.f, -1.f,		-1.f, 0.f, -1.f,
-		// -1.f, 2.f, -1.f,	1.f, 2.f, 1.f,		-1.f, 2.f, 1.f,
-		// 1.f, 2.f, 1.f,		-1.f, 2.f, -1.f,	1.f, 2.f, -1.f,
+		-1.f, 0.f, -1.f,	-1.f, 0.f, 1.f,		1.f, 0.f, 1.f,
+		1.f, 0.f, 1.f,		1.f, 0.f, -1.f,		-1.f, 0.f, -1.f,
+		-1.f, 2.f, -1.f,	1.f, 2.f, 1.f,		-1.f, 2.f, 1.f,
+		1.f, 2.f, 1.f,		-1.f, 2.f, -1.f,	1.f, 2.f, -1.f,
 
-		// -1.f, 0.f, -1.f,	-1.f, 2.f, -1.f,	-1.f, 2.f, 1.f,
-		// -1.f, 2.f, 1.f,		-1.f, 0.f, 1.f,		-1.f, 0.f, -1.f,
-		// 1.f, 0.f, -1.f,		1.f, 2.f, 1.f,		1.f, 2.f, -1.f,
-		// 1.f, 2.f, 1.f,		1.f, 0.f, -1.f,		1.f, 0.f, 1.f,
+		-1.f, 0.f, -1.f,	-1.f, 2.f, -1.f,	-1.f, 2.f, 1.f,
+		-1.f, 2.f, 1.f,		-1.f, 0.f, 1.f,		-1.f, 0.f, -1.f,
+		1.f, 0.f, -1.f,		1.f, 2.f, 1.f,		1.f, 2.f, -1.f,
+		1.f, 2.f, 1.f,		1.f, 0.f, -1.f,		1.f, 0.f, 1.f,
 
 		-3.f, 0.f, -1.f,	-3.f, 2.f, -1.f,	-1.f, 2.f, -1.f,
 		-1.f, 2.f, -1.f,	-1.f, 0.f, -1.f,	-3.f, 0.f, -1.f,
@@ -127,15 +151,15 @@ static Mesh	*loadClusterRoadEnd()
 		3.f, 2.f, -1.f,		3.f, 0.f, -1.f,		1.f, 0.f, -1.f,
 	};
 	GLfloat vColor[] = {
-		// 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
-		// 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
-		// 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
-		// 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
 
-		// .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
-		// .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
-		// .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
-		// .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
 
 		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
 		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
@@ -143,24 +167,24 @@ static Mesh	*loadClusterRoadEnd()
 		.8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f, .8f,
 	};
 	GLfloat vTex[] = {
-		// 0.f, 1.f, 0.f, 0.f, 1.f, 0.f,
-		// 1.f, 0.f, 1.f, 1.f, 0.f, 1.f,
-		// 0.f, 1.f, 1.f, 0.f, 0.f, 0.f,
-		// 1.f, 0.f, 0.f, 1.f, 1.f, 1.f,
-        //
-		// 0.f, 0.f, 0.f, 1.f, 1.f, 1.f,
-		// 1.f, 1.f, 1.f, 0.f, 0.f, 0.f,
-		// 0.f, 0.f, 1.f, 1.f, 0.f, 1.f,
-		// 1.f, 1.f, 0.f, 0.f, 1.f, 0.f,
+		0.f, 1.f, 0.f, 0.f, 1.f, 0.f,
+		1.f, 0.f, 1.f, 1.f, 0.f, 1.f,
+		0.f, 1.f, 1.f, 0.f, 0.f, 0.f,
+		1.f, 0.f, 0.f, 1.f, 1.f, 1.f,
+
+		0.f, 0.f, 0.f, 1.f, 1.f, 1.f,
+		1.f, 1.f, 1.f, 0.f, 0.f, 0.f,
+		0.f, 0.f, 1.f, 1.f, 0.f, 1.f,
+		1.f, 1.f, 0.f, 0.f, 1.f, 0.f,
 
 		0.f, 1.f, 0.f, 0.f,	1.f, 0.f,
 		1.f, 0.f, 1.f, 1.f, 0.f, 1.f,
 		0.f, 1.f, 0.f, 0.f,	1.f, 0.f,
 		1.f, 0.f, 1.f, 1.f, 0.f, 1.f,
 	};
-	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 12);
-	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 12);
-	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 12);
+	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 36);
+	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 36);
+	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 36);
 	mesh->end();
 	return (mesh);
 }
@@ -321,6 +345,47 @@ static Mesh	*loadPlayer()
 	return (mesh);
 }
 
+static Mesh	*loadPoto()
+{
+	Mesh *mesh = new Mesh(3);
+	mesh->begin();
+	GLfloat vPos[] = {
+		-.4f, 2.f, -.4f, .4f, 2.f, -.4f, -.4f, .0f, -.4f,
+		.4f, .0f, -.4f, -.4f, .0f, -.4f, .4f, 2.f, -.4f,
+
+		-.4f, 2.f, -.4f, -.4f, .0f, -.4f, -.4f, 2.f, .4f,
+		-.4f, .0f, .4f, -.4f, 2.f, .4f, -.4f, .0f, -.4f,
+
+		.4f, 2.f, -.4f, .4f, 2.f, .4f, .4f, .0f, -.4f,
+		.4f, .0f, .4f, .4f, .0f, -.4f, .4f, 2.f, .4f,
+	};
+	GLfloat vColor[] = {
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+		1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f, 1.f,
+
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+		.9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f, .9f,
+	};
+	GLfloat vTex[] = {
+		0.f, 1.f, .5f, 1.f, 0.f, 0.f,
+		.5f, 0.f, 0.f, 0.f, .5f, 1.f,
+
+		.5f, 1.f, .5f, 0.f, 0.f, 1.f,
+		0.f, 1.f, 0.f, 0.f, .5f, 1.f,
+
+		0.f, 1.f, .5f, 1.f, 0.f, 0.f,
+		.5f, 0.f, 0.f, 0.f, .5f, 1.f,
+	};
+	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 24);
+	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 24);
+	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 24);
+	mesh->end();
+	return (mesh);
+}
+
 static Mesh	*loadTrash()
 {
 	Mesh *mesh = new Mesh(2);
@@ -436,11 +501,15 @@ Game::Game(Window *win) : _win(win)
 	_road[2] = loadRoadR();
 	_road[3] = loadRoadLR();
 	_player = loadPlayer();
-	_trash = loadTrash();
-	_texture = Texture::LoadBMP("textures/uvtemplate.bmp");
+	_items[0] = loadTrash();
+	_items[1] = loadPoto();
+	_textures[0] = Texture::LoadBMP("textures/uvtemplate.bmp");
+	// _textures[1] = Texture::LoadBMP("textures/poto.bmp");
 	// Texture font = Texture::LoadPNG("font.png");
 	_playerPos = Vec3f(0, 0.5, 0);
 	_fakeRot = 0.f;
+	while (_rooms.size() < 10)
+		addRoom();
 }
 
 Game::~Game()
@@ -450,7 +519,8 @@ Game::~Game()
 		delete _rooms.back();
 		_rooms.pop_back();
 	}
-	delete _texture;
+	delete _textures[0];
+	// delete _textures[1];
 	delete _road[0];
 	delete _road[1];
 	delete _road[2];
@@ -458,7 +528,8 @@ Game::~Game()
 	delete _cluster[0];
 	delete _cluster[1];
 	delete _player;
-	delete _trash;
+	delete _items[0];
+	delete _items[1];
 }
 
 
@@ -482,20 +553,20 @@ void				Game::renderGame(void)
 	_sample.uniformMat4((GLchar *)"model", (GLfloat *)&identity);
 	glActiveTexture(GL_TEXTURE0);
 	_sample.uniform1i((GLchar *)"uTexture", 0);
-	_texture->bind();
+	_textures[0]->bind();
 	Mat4 model;
 	for (std::vector<Room *>::iterator it = _rooms.begin() ; it != _rooms.end(); ++it)
 	{
 		model = Mat4::Translate((*it)->getPos());
 		_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 		(*it)->getRender()->render(GL_TRIANGLES);
-		if ((*it)->getRender() == _cluster[1])
-			_road[0]->render(GL_TRIANGLES);
+		// if ((*it)->getRender() == _cluster[1])
+		// 	_road[0]->render(GL_TRIANGLES);
 		if ((*it)->getItem() >= 0)
 		{
 			model = Mat4::Translate((*it)->getPos() + (*it)->getItemPos());
 			_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-			_trash->render(GL_TRIANGLES);
+			_items[(*it)->getItem()]->render(GL_TRIANGLES);
 		}
 		if ((*it)->getType() > 0)
 		{
@@ -513,14 +584,14 @@ void				Game::renderGame(void)
 					model = rot * Mat4::Translate((*it)->getPos() + Vec3f(-2 * i, 0, 0));
 					_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 					(*itNext)->getRender()->render(GL_TRIANGLES);
-					if ((*itNext)->getRender() == _cluster[1])
-						_road[0]->render(GL_TRIANGLES);
+					// if ((*itNext)->getRender() == _cluster[1])
+					// 	_road[0]->render(GL_TRIANGLES);
 					if ((*itNext)->getItem() >= 0)
 					{
 						Vec3f iPos = (*it)->getItemPos();
 						model = rot *  Mat4::Translate((*it)->getPos() + Vec3f(-2 * i, 0, 0) + Vec3f(iPos[2], 0, iPos[1]));
 						_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-						_trash->render(GL_TRIANGLES);
+						_items[(*itNext)->getItem()]->render(GL_TRIANGLES);
 					}
 				}
 				if (((*it)->getType() & 2) == 2)
@@ -529,14 +600,14 @@ void				Game::renderGame(void)
 					model = rot * Mat4::Translate((*it)->getPos() + Vec3f(2 * i, 0, 0));
 					_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 					(*itNext)->getRender()->render(GL_TRIANGLES);
-					if ((*itNext)->getRender() == _cluster[1])
-						_road[0]->render(GL_TRIANGLES);
+					// if ((*itNext)->getRender() == _cluster[1])
+					// 	_road[0]->render(GL_TRIANGLES);
 					if ((*itNext)->getItem() >= 0)
 					{
 						Vec3f iPos = (*it)->getItemPos();
 						model = rot *  Mat4::Translate((*it)->getPos() + Vec3f(2 * i, 0, 0) + Vec3f(-iPos[2], 0, iPos[1]));
 						_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-						_trash->render(GL_TRIANGLES);
+						_items[(*itNext)->getItem()]->render(GL_TRIANGLES);
 					}
 				}
 				i++;
@@ -619,7 +690,7 @@ void				Game::updateGame(void)
 	while (it != _rooms.end())
 	{
 		Vec3f pos = (*it)->getPos();
-		if (pos[2] + 1.f > _playerPos[2])
+		if (pos[2] + 1.5f > _playerPos[2])
 		{
 			break ;
 		}
@@ -656,6 +727,8 @@ void				Game::reset(void)
 	_playerPos = Vec3f(0, 0.5, 0);
 	_playerOffset = Vec3f(0);
 	_fakeRot = 0.f;
+	while (_rooms.size() < 10)
+		addRoom();
 }
 
 void				Game::renderLost(void)
@@ -700,6 +773,7 @@ void	Game::update(void)
 		updateGame();
 	else if (_state == -1)
 		updateLost();
+
 }
 
 void	Game::addRoom(void)
@@ -761,6 +835,15 @@ void	Game::addRoom(void)
 						r->setItemPos(Vec3f(-0.35f, 0, 0));
 					else
 						r->setItemPos(Vec3f(-0.85f, 0, 0));
+				}
+				else if (std::rand() % 12 == 8)
+				{
+					r->setItem(1);
+					int random = std::rand() % 2;
+					if (random == 0)
+						r->setItemPos(Vec3f(0.6f, 0, 0));
+					else
+						r->setItemPos(Vec3f(-0.6f, 0, 0));
 				}
 			}
 		}

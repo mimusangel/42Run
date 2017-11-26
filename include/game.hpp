@@ -34,8 +34,8 @@ private:
 	Shaders				_sample;
 	Mesh				*_road[4];
 	Mesh				*_cluster[2];
-	Mesh				*_trash;
-	Texture				*_texture;
+	Mesh				*_items[2];
+	Texture				*_textures[2];
 	std::vector<Room *>	_rooms;
 	Mesh				*_player;
 	Vec3f				_playerPos;
