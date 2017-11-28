@@ -68,6 +68,7 @@ void			Mesh::add(GLuint index, GLenum type, size_t width, void *data, size_t dat
 	glBufferData(GL_ARRAY_BUFFER, s * width * dataSize, data, usage);
 	glVertexAttribPointer(index, width, type, GL_FALSE, 0, (void *)0);
 	glEnableVertexAttribArray(index);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void			Mesh::end(void)

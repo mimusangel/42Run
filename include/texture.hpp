@@ -17,11 +17,12 @@ public:
 	Texture(unsigned int width, unsigned int height, unsigned char *data, GLenum format = GL_BGR);
 	~Texture();
 	void	bind(void);
+	inline GLuint getID(void) { return (_textureID); }
 
 	static Texture	*LoadBMP(const char *path);
 	static Texture	*LoadPNG(const char *path);
-	inline int	getWidth(void) { return(_width); }
-	inline int	getHeight(void) { return(_height); }
+	inline int	getWidth(void) { return (_width); }
+	inline int	getHeight(void) { return (_height); }
 };
 
 #endif

@@ -47,12 +47,15 @@ private:
 	float				_velocity;
 	int					_state;
 	float				_fakeRot;
+	void				init3D(Shaders &shaders, Mat4 &view, bool texEnable = true);
+	void				init2D(Shaders &shaders);
 	void				renderStart(void);
 	void				renderGame(void);
 	void				renderLost(void);
 	void				updateStart(void);
 	void				updateGame(void);
 	void				updateLost(void);
+	void				renderText2D(const char *str, const Vec2f &vec);
 	void				reset(void);
 public:
 	Game(Window *win);

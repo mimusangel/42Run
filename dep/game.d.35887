@@ -1,0 +1,5 @@
+game.o: sources/game.cpp include/game.hpp include/window.hpp \
+  include/global.hpp /Users/mgallo/.brew/include/GL/glew.h \
+  /Users/mgallo/.brew/include/GLFW/glfw3.h \
+  liblpdmath/include/lpdmath.hpp include/shaders.hpp include/mesh.hpp \
+  include/texture.hpp

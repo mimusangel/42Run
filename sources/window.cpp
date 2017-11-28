@@ -119,8 +119,8 @@ void				Window::makeContextCurrent(void)
 
 void				Window::update(void)
 {
-	glfwSwapBuffers(_win);
 	glfwPollEvents();
+	glfwSwapBuffers(_win);
 }
 
 void				Window::setTitle(std::string title)

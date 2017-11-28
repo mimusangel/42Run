@@ -2,7 +2,7 @@
 
 static Mesh	*loadRoad()
 {
-	Mesh *mesh = new Mesh(3);
+	Mesh *mesh = new Mesh(4);
 	mesh->begin();
 	GLfloat vPos[] = {
 		-1.f, 0.f, -1.f,	-1.f, 0.f, 1.f,		1.f, 0.f, 1.f,
@@ -34,16 +34,27 @@ static Mesh	*loadRoad()
 		0.f, 0.f, 1.f, 1.f, 0.f, 1.f,
 		1.f, 1.f, 0.f, 0.f, 1.f, 0.f,
 	};
+	GLint vTexID[] = {
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+	};
 	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 24);
 	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 24);
 	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 24);
+	mesh->add(3, GL_INT, 1, (void *)vTexID, 24);
 	mesh->end();
 	return (mesh);
 }
 
 static Mesh	*loadClusterRoad()
 {
-	Mesh *mesh = new Mesh(3);
+	Mesh *mesh = new Mesh(4);
 	mesh->begin();
 	GLfloat vPos[] = {
 		-1.f, 0.f, -1.f,	-1.f, 0.f, 1.f,		1.f, 0.f, 1.f,
@@ -123,16 +134,39 @@ static Mesh	*loadClusterRoad()
 		0.f, .5f,	0.f, 1.f,	1.f, 1.f,
 		1.f, 1.f,	1.f, .5f, 	0.f, .5f,
 	};
+	GLint vTexID[] = {
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+	};
 	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 60);
 	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 60);
 	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 60);
+	mesh->add(3, GL_INT, 1, (void *)vTexID, 60);
 	mesh->end();
 	return (mesh);
 }
 
 static Mesh	*loadClusterRoadEnd()
 {
-	Mesh *mesh = new Mesh(3);
+	Mesh *mesh = new Mesh(4);
 	mesh->begin();
 	GLfloat vPos[] = {
 		-1.f, 0.f, -1.f,	-1.f, 0.f, 1.f,		1.f, 0.f, 1.f,
@@ -182,9 +216,24 @@ static Mesh	*loadClusterRoadEnd()
 		0.f, 1.f, 0.f, 0.f,	1.f, 0.f,
 		1.f, 0.f, 1.f, 1.f, 0.f, 1.f,
 	};
+	GLint vTexID[] = {
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+	};
 	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 36);
 	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 36);
 	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 36);
+	mesh->add(3, GL_INT, 1, (void *)vTexID, 36);
 	mesh->end();
 	return (mesh);
 }
@@ -192,7 +241,7 @@ static Mesh	*loadClusterRoadEnd()
 
 static Mesh	*loadRoadL()
 {
-	Mesh *mesh = new Mesh(3);
+	Mesh *mesh = new Mesh(4);
 	mesh->begin();
 	GLfloat vPos[] = {
 		-1.f, 0.f, -1.f,	-1.f, 0.f, 1.f,		1.f, 0.f, 1.f,
@@ -224,16 +273,27 @@ static Mesh	*loadRoadL()
 		0.f, 0.f, 1.f, 1.f, 0.f, 1.f,
 		1.f, 1.f, 0.f, 0.f, 1.f, 0.f,
 	};
+	GLint vTexID[] = {
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+	};
 	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 24);
 	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 24);
 	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 24);
+	mesh->add(3, GL_INT, 1, (void *)vTexID, 24);
 	mesh->end();
 	return (mesh);
 }
 
 static Mesh	*loadRoadR()
 {
-	Mesh *mesh = new Mesh(3);
+	Mesh *mesh = new Mesh(4);
 	mesh->begin();
 	GLfloat vPos[] = {
 		-1.f, 0.f, -1.f,	-1.f, 0.f, 1.f,		1.f, 0.f, 1.f,
@@ -265,16 +325,27 @@ static Mesh	*loadRoadR()
 		0.f, 0.f, 0.f, 1.f, 1.f, 1.f,
 		1.f, 1.f, 1.f, 0.f, 0.f, 0.f,
 	};
+	GLint vTexID[] = {
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+	};
 	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 24);
 	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 24);
 	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 24);
+	mesh->add(3, GL_INT, 1, (void *)vTexID, 24);
 	mesh->end();
 	return (mesh);
 }
 
 static Mesh	*loadRoadLR()
 {
-	Mesh *mesh = new Mesh(3);
+	Mesh *mesh = new Mesh(4);
 	mesh->begin();
 	GLfloat vPos[] = {
 		-1.f, 0.f, -1.f,	-1.f, 0.f, 1.f,		1.f, 0.f, 1.f,
@@ -300,9 +371,18 @@ static Mesh	*loadRoadLR()
 		0.f, 1.f, 0.f, 0.f, 1.f, 0.f,
 		1.f, 0.f, 1.f, 1.f, 0.f, 1.f,
 	};
+	GLint vTexID[] = {
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+		0, 0, 0,
+	};
 	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 18);
 	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 18);
 	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 18);
+	mesh->add(3, GL_INT, 1, (void *)vTexID, 18);
 	mesh->end();
 	return (mesh);
 }
@@ -347,7 +427,7 @@ static Mesh	*loadPlayer()
 
 static Mesh	*loadPoto()
 {
-	Mesh *mesh = new Mesh(3);
+	Mesh *mesh = new Mesh(4);
 	mesh->begin();
 	GLfloat vPos[] = {
 		-.4f, 2.f, -.4f, .4f, 2.f, -.4f, -.4f, .0f, -.4f,
@@ -379,9 +459,20 @@ static Mesh	*loadPoto()
 		0.f, 1.f, .5f, 1.f, 0.f, 0.f,
 		.5f, 0.f, 0.f, 0.f, .5f, 1.f,
 	};
-	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 24);
-	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 24);
-	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 24);
+	GLint vTexID[] = {
+		1, 1, 1,
+		1, 1, 1,
+
+		1, 1, 1,
+		1, 1, 1,
+
+		1, 1, 1,
+		1, 1, 1,
+	};
+	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 18);
+	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 18);
+	mesh->add(2, GL_FLOAT, 2, (void *)vTex, 18);
+	mesh->add(3, GL_INT, 1, (void *)vTexID, 18);
 	mesh->end();
 	return (mesh);
 }
@@ -435,50 +526,48 @@ static Mesh	*loadTrash()
 		.7f + -.1f, .7f, -.1f,		.7f + -.1f, .7f, -.025f,	.7f + .1f, .7f, -.025f,
 	};
 	GLfloat vColor[] = {
-		.90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f,
-		.90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f,
+		.60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f,
+		.60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
-		.0f, .0f, .90f, .0f, .0f, .90f, .0f, .0f, .90f,
-		.0f, .0f, .90f, .0f, .0f, .90f, .0f, .0f, .90f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f,
-		.95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f,
-
-		.90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f,
-		.90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f,
+		.0f, .0f, .60f, .0f, .0f, .60f, .0f, .0f, .60f,
+		.0f, .0f, .60f, .0f, .0f, .60f, .0f, .0f, .60f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f,
+		.65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f,
+		.60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f,
+		.60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
 		.5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f,
 		.5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f, .5f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f,
-		.95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f,
-
-		.90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f,
-		.90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f, .90f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f,
+		.65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f,
+		.60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f,
+		.60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f, .60f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
 		.75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f, .75f,
-		.0f, .90f, .0f, .0f, .90f, .0f, .0f, .90f, .0f,
-		.0f, .90f, .0f, .0f, .90f, .0f, .0f, .90f, .0f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f, .825f,
-		.95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f,
-		.95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f, .95f,
+		.0f, .60f, .0f, .0f, .60f, .0f, .0f, .60f, .0f,
+		.0f, .60f, .0f, .0f, .60f, .0f, .0f, .60f, .0f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f, .525f,
+		.65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f,
+		.65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f, .65f,
 	};
 	mesh->add(0, GL_FLOAT, 3, (void *)vPos, 126);
 	mesh->add(1, GL_FLOAT, 3, (void *)vColor, 126);
@@ -543,6 +632,10 @@ Game::Game(Window *win) : _win(win)
 	_font = Texture::LoadPNG("textures/font.png");
 	_meshFont = loadFont();
 	_playerPos = Vec3f(0, 0.5, 0);
+	_playerOffset = Vec3f(0);
+	_fakeRot = 0.f;
+	_state = 0;
+	_velocity = 0.f;
 	_fakeRot = 0.f;
 	while (_rooms.size() < 10)
 		addRoom();
@@ -570,10 +663,49 @@ Game::~Game()
 	delete _font;
 }
 
+void				Game::init3D(Shaders &shaders, Mat4	&view, bool texEnable)
+{
+	static Mat4 identity = Mat4::Identity();
+
+	glUseProgram(0);
+	shaders.bind();
+	shaders.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->projection));
+	shaders.uniformMat4((GLchar *)"view", (GLfloat *)&view);
+	shaders.uniformMat4((GLchar *)"model", (GLfloat *)&identity);
+	if (texEnable)
+	{
+		glActiveTexture(GL_TEXTURE0);
+		// glEnable(GL_TEXTURE_2D);
+		shaders.uniform1i((GLchar *)"uTexture", 0);
+		_textures[0]->bind();
+		// glActiveTexture(GL_TEXTURE0 + 1);
+		// glEnable(GL_TEXTURE_2D);
+		// shaders.uniform1i((GLchar *)"uTexture[1]", 1);
+		// _textures[1]->bind();
+	}
+	glEnable(GL_DEPTH_TEST);
+}
+
+void				Game::init2D(Shaders &shaders)
+{
+	static Mat4 identity = Mat4::Identity();
+	glUseProgram(0);
+	glDisable(GL_DEPTH_TEST);
+	shaders.bind();
+	shaders.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->ortho));
+	shaders.uniformMat4((GLchar *)"model", (GLfloat *)&identity);
+	glActiveTexture(GL_TEXTURE0);
+	shaders.uniform1i((GLchar *)"uTexture", 0);
+	shaders.uniform2fv((GLchar *)"id", 0, 0);
+}
+
 
 void				Game::renderStart(void)
 {
-
+	init2D(_fontShader);
+	_font->bind();
+	renderText2D("42 RUN", Vec2f(50, 50));
+	renderText2D("PRESS SPACE", Vec2f(50, 620));
 }
 
 void				Game::updateStart(void)
@@ -583,38 +715,35 @@ void				Game::renderGame(void)
 {
 	static Mat4 identity = Mat4::Identity();
 	Mat4 viewRot = Quat::Angle(Vec3f(-22.5, _fakeRot, 0)).toMat4();
-	glEnable(GL_DEPTH_TEST);
 	Mat4 view = Mat4::Translate(0, -1.5, 1 - _playerPos[2]) * viewRot;
-	_sample.bind();
-	_sample.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->projection));
-	_sample.uniformMat4((GLchar *)"view", (GLfloat *)&view);
-	_sample.uniformMat4((GLchar *)"model", (GLfloat *)&identity);
-	glActiveTexture(GL_TEXTURE0);
-	_sample.uniform1i((GLchar *)"uTexture", 0);
-	_textures[0]->bind();
+
+	init3D(_sample, view);
 	Mat4 model;
 	for (std::vector<Room *>::iterator it = _rooms.begin() ; it != _rooms.end(); ++it)
 	{
 		model = Mat4::Translate((*it)->getPos());
 		_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 		(*it)->getRender()->render(GL_TRIANGLES);
-		// if ((*it)->getRender() == _cluster[1])
-		// 	_road[0]->render(GL_TRIANGLES);
 		if ((*it)->getItem() >= 0)
 		{
+			Mat4 objModel = Mat4::Translate((*it)->getPos() + (*it)->getItemPos());
 			if ((*it)->getItem() == 1)
+			{
+				_sample.uniformMat4((GLchar *)"model", (GLfloat *)&objModel);
 				_textures[1]->bind();
-			model = Mat4::Translate((*it)->getPos() + (*it)->getItemPos());
-			_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
+			}
+			else
+			{
+				init3D(_playerShader, view, false);
+				_playerShader.uniformMat4((GLchar *)"model", (GLfloat *)&objModel);
+			}
 			_items[(*it)->getItem()]->render(GL_TRIANGLES);
-			_textures[0]->bind();
+			init3D(_sample, view);
 		}
 		if ((*it)->getType() > 0)
 		{
-			// std::vector<Room *>::iterator itNext = it + 1;
-			// if (itNext != _rooms.end())
 			int i = 1;
-			while (i < 20)
+			while (i < 10)
 			{
 				std::vector<Room *>::iterator itNext = it + i;
 				if (itNext == _rooms.end())
@@ -625,15 +754,6 @@ void				Game::renderGame(void)
 					model = rot * Mat4::Translate((*it)->getPos() + Vec3f(-2 * i, 0, 0));
 					_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 					(*itNext)->getRender()->render(GL_TRIANGLES);
-					// if ((*itNext)->getRender() == _cluster[1])
-					// 	_road[0]->render(GL_TRIANGLES);
-					if ((*itNext)->getItem() >= 0)
-					{
-						Vec3f iPos = (*it)->getItemPos();
-						model = rot *  Mat4::Translate((*it)->getPos() + Vec3f(-2 * i, 0, 0) + Vec3f(iPos[2], 0, iPos[1]));
-						_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-						_items[(*itNext)->getItem()]->render(GL_TRIANGLES);
-					}
 				}
 				if (((*it)->getType() & 2) == 2)
 				{
@@ -641,24 +761,15 @@ void				Game::renderGame(void)
 					model = rot * Mat4::Translate((*it)->getPos() + Vec3f(2 * i, 0, 0));
 					_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 					(*itNext)->getRender()->render(GL_TRIANGLES);
-					// if ((*itNext)->getRender() == _cluster[1])
-					// 	_road[0]->render(GL_TRIANGLES);
-					if ((*itNext)->getItem() >= 0)
-					{
-						Vec3f iPos = (*it)->getItemPos();
-						model = rot *  Mat4::Translate((*it)->getPos() + Vec3f(2 * i, 0, 0) + Vec3f(-iPos[2], 0, iPos[1]));
-						_sample.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-						_items[(*itNext)->getItem()]->render(GL_TRIANGLES);
-					}
 				}
 				i++;
+				if ((*itNext)->getType() > 0)
+					break ;
 			}
 			break ;
 		}
 	}
-	_playerShader.bind();
-	_playerShader.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->projection));
-	_playerShader.uniformMat4((GLchar *)"view", (GLfloat *)&view);
+	init3D(_playerShader, view, false);
 	model = Mat4::Translate(_playerPos + _playerOffset);
 	_playerShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 	_player->render(GL_TRIANGLES);
@@ -666,11 +777,7 @@ void				Game::renderGame(void)
 	/* ******************* */
 	/* *RENDER 2D        * */
 	/* ******************* */
-	glDisable(GL_DEPTH_TEST);
-	_fontShader.bind();
-	_fontShader.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->ortho));
-	glActiveTexture(GL_TEXTURE0);
-	_fontShader.uniform1i((GLchar *)"uTexture", 0);
+	init2D(_fontShader);
 	_font->bind();
 	static float u = 1.f / 16.f;
 	static float v = 1.f / 8.f;
@@ -681,9 +788,9 @@ void				Game::renderGame(void)
 		model = Mat4::Translate(Vec2f(1280.f - (i + 1.f) * 50.f, 0));
 		_fontShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
 		int k = 47 + (j % 10);
-		j /= 10;
 		_fontShader.uniform2fv((GLchar *)"id", (float)(k % 16) * u, (float)(k / 16) * v);
 		_meshFont->render(GL_TRIANGLES);
+		j /= 10;
 		i++;
 	}
 }
@@ -792,7 +899,6 @@ void				Game::reset(void)
 		delete _rooms.back();
 		_rooms.pop_back();
 	}
-	_playerPos = Vec3f(0, 0.5, 0);
 	_playerOffset = Vec3f(0);
 	_fakeRot = 0.f;
 	while (_rooms.size() < 10)
@@ -801,34 +907,24 @@ void				Game::reset(void)
 
 void				Game::renderLost(void)
 {
-	glDisable(GL_DEPTH_TEST);
-	_fontShader.bind();
-	_fontShader.uniformMat4((GLchar *)"projection", (GLfloat *)&(_win->ortho));
-	glActiveTexture(GL_TEXTURE0);
-	_fontShader.uniform1i((GLchar *)"uTexture", 0);
+	init2D(_fontShader);
 	_font->bind();
+	renderText2D("YOU LOST !", Vec2f(50, 50));
+	renderText2D("PRESS SPACE", Vec2f(50, 620));
 	static float u = 1.f / 16.f;
 	static float v = 1.f / 8.f;
-	const char *str = "YOU LOST !";
-	int i = -1;
+	int j = (int)_playerPos[2];
+	int i = 0;
 	Mat4 model;
-	while (str[++i])
+	while (j != 0)
 	{
-		model = Mat4::Translate(Vec2f(50.f + (i + 1.f) * 50.f, 50.f));
+		model = Mat4::Translate(Vec2f(1230.f - (i + 1.f) * 50.f, 40));
 		_fontShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-		int k = (int)str[i] - 1;
+		int k = 47 + (j % 10);
 		_fontShader.uniform2fv((GLchar *)"id", (float)(k % 16) * u, (float)(k / 16) * v);
 		_meshFont->render(GL_TRIANGLES);
-	}
-	str = "PRESS SPACE";
-	i = -1;
-	while (str[++i])
-	{
-		model = Mat4::Translate(Vec2f(50.f + (i + 1.f) * 50.f, 620.f));
-		_fontShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-		int k = (int)str[i] - 1;
-		_fontShader.uniform2fv((GLchar *)"id", (float)(k % 16) * u, (float)(k / 16) * v);
-		_meshFont->render(GL_TRIANGLES);
+		j /= 10;
+		i++;
 	}
 }
 
@@ -840,7 +936,10 @@ void				Game::updateLost(void)
 void				Game::nextState(void)
 {
 	if (_state == 0)
+	{
 		_state = 1;
+		_playerPos = Vec3f(0, 0.5, 0);
+	}
 	else if (_state == 1)
 		_state = 2;
 	else if (_state == 2)
@@ -869,7 +968,23 @@ void	Game::update(void)
 		updateGame();
 	else if (_state == -1)
 		updateLost();
+}
 
+void	Game::renderText2D(const char *str, const Vec2f &vec)
+{
+	static float u = 1.f / 16.f;
+	static float v = 1.f / 8.f;
+	int i = -1;
+
+	Mat4 model;
+	while (str[++i])
+	{
+		model = Mat4::Translate(Vec2f(vec[0] + (i + 1.f) * 50.f, vec[1]));
+		_fontShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
+		int k = (int)str[i] - 1;
+		_fontShader.uniform2fv((GLchar *)"id", (float)(k % 16) * u, (float)(k / 16) * v);
+		_meshFont->render(GL_TRIANGLES);
+	}
 }
 
 void	Game::addRoom(void)
