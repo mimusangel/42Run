@@ -283,22 +283,11 @@ void	Game::renderText2D(const char *str, float x, float y)
 	_font->uniform2fv((GLchar *)"posScreen", x, y);
 	glActiveTexture(GL_TEXTURE0);
 	_texFont->bind();
-	// _font->uniformMat4((GLchar *)"MVP", (GLfloat *)&identity[0][0]);
 	while (str[++i])
 	{
-		// std::cout << str[i] << std::endl;
-		// glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(x + (float)i * 50.0f, y, 0.0f));
-		// glm::mat4 mvp = orthographic * model;
 		int k = (int)str[i] - 1;
 		_font->uniform2fv((GLchar *)"offset", (float)(k % 16) * u, (float)(k / 16) * v);
 		_font->uniform2fv((GLchar *)"posScreen", x + (float)i * 50.0f, y);
-		// _font->uniformMat4((GLchar *)"MVP", (GLfloat *)&model[0][0]);
 		_fontMesh->render(GL_TRIANGLES);
-		// std::cout << str[i] << std::endl;
-		// model = Mat4::Translate(Vec2f(vec[0] + (i + 1.f) * 50.f, vec[1]));
-		// _fontShader.uniformMat4((GLchar *)"model", (GLfloat *)&model);
-		// int k = (int)str[i] - 1;
-		// _fontShader.uniform2fv((GLchar *)"id", (float)(k % 16) * u, (float)(k / 16) * v);
-		// _meshFont->render(GL_TRIANGLES);
 	}
 }
