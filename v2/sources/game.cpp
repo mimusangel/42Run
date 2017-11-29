@@ -57,20 +57,18 @@ void	Game::init(void)
 	_textures[0] = Texture::LoadBMP("textures/uvtemplate.bmp");
 	_textures[1] = Texture::LoadBMP("textures/ground.bmp");
 	_textures[2] = Texture::LoadBMP("textures/poto.bmp");
-	_texFont = Texture::LoadPNG("textures/font.png");
+	_texFont = Texture::LoadBMP("textures/font.bmp");
 
 
 	_fontMesh = new Mesh(2);
 	_fontMesh->begin();
-	float u = 1.f / 16.f;
-	float v = 1.f / 8.f;
 	GLfloat vPos[] = {
 		0.f, 0.f,	50.f, 0.f,	50.f, 50.f,
 		50.f, 50.f,	0.f, 50.f,	0.f, 0.f,
 	};
 	GLfloat vTex[] = {
-		0.f, 0.f,	u, 0.f,	u, v,
-		u, v,		0.f, v,	0.f, 0.f
+		0.f, 0.f,			0.0625f, 0.f,	0.0625f, 0.125f,
+		0.0625f, 0.125f,	0.f, 0.125f,	0.f, 0.f,
 	};
 	_fontMesh->add(0, GL_FLOAT, 2, (void *)vPos, 6);
 	_fontMesh->add(1, GL_FLOAT, 2, (void *)vTex, 6);
@@ -274,19 +272,21 @@ void	Game::render2D(void)
 void	Game::renderText2D(const char *str, float x, float y)
 {
 	static glm::mat4 identity = glm::mat4(1.0f);
-	static float u = 1.f / 16.f;
-	static float v = 1.f / 8.f;
 	int i = -1;
 
 	_font->uniform1i((GLchar *)"uTexture", 0);
 	_font->uniform2fv((GLchar *)"offset", 0, 0);
 	_font->uniform2fv((GLchar *)"posScreen", x, y);
 	glActiveTexture(GL_TEXTURE0);
-	_texFont->bind();
+	// _texFont->bind();
+	_textures[0]->bind();
 	while (str[++i])
 	{
 		int k = (int)str[i] - 1;
-		_font->uniform2fv((GLchar *)"offset", (float)(k % 16) * u, (float)(k / 16) * v);
+		float offx = (float)(k % 16) * 0.0625f;
+		float offy = (float)(k / 16) * 0.125f;
+		std::cout << k << ": " << offx << ", " << offy << std::endl;
+		_font->uniform2fv((GLchar *)"offset", offx, offy);
 		_font->uniform2fv((GLchar *)"posScreen", x + (float)i * 50.0f, y);
 		_fontMesh->render(GL_TRIANGLES);
 	}
