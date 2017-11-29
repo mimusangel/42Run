@@ -38,6 +38,7 @@ static void win_resize_callback(GLFWwindow *window, int width, int height)
 		return ;
 	glViewport(0, 0, width, height);
 	game->projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.0001f, 1000.0f);
+	game->orthographic = glm::ortho(0, width, height, 0, -1, 1);
 }
 
 int		main(void)

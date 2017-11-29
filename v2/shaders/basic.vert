@@ -12,7 +12,6 @@ flat out int vTexID;
 
 void main()
 {
-	// mat4 mvp = projection * view * model;
 	gl_Position = MVP * vec4(vertexPosition, 1);
 	vColor = vertexColor;
 	vTex = vertexTex;

@@ -20,6 +20,7 @@ public:
 	inline GLuint getID(void) { return (_textureID); }
 
 	static Texture	*LoadBMP(const char *path, GLenum format = GL_BGR);
+	static Texture	*LoadPNG(const char *path);
 	inline int	getWidth(void) { return (_width); }
 	inline int	getHeight(void) { return (_height); }
 };

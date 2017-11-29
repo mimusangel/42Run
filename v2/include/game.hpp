@@ -11,11 +11,16 @@ private:
 	Shaders	*_shaders;
 	Texture	*_textures[3];
 
+	Mesh	*_fontMesh;
+	Shaders	*_font;
+	Texture	*_texFont;
+
 	void	init(void);
 
 public:
 	GLFWwindow	*window;
 	glm::mat4	projection;
+	glm::mat4	orthographic;
 
 	Game();
 	~Game();
@@ -26,4 +31,5 @@ public:
 	void	bindAllTexture(Shaders *shader);
 	void	render(void);
 	void	render2D(void);
+	void	renderText2D(const char *str, float x, float y);
 };
