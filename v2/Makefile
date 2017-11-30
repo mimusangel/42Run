@@ -14,6 +14,8 @@ LIBS = -lm -framework OPENGL `pkg-config --static --libs glfw3` \
 	`pkg-config --static --libs libpng`
 SRC = \
 	42run.cpp \
+	load.cpp \
+	room.cpp \
 	game.cpp \
 	mesh.cpp \
 	shaders.cpp \

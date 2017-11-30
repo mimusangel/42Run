@@ -25,7 +25,14 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 				glDisable(GL_CULL_FACE);
 			}
 		}
-		// win->getGame().getRot().debug();
+		else if (key == GLFW_KEY_SPACE)
+		{
+			game->nextState();
+		}
+		else if (key == GLFW_KEY_I)
+		{
+			game->debugMode = !game->debugMode;
+		}
 	}
 }
 
@@ -38,7 +45,6 @@ static void win_resize_callback(GLFWwindow *window, int width, int height)
 		return ;
 	glViewport(0, 0, width, height);
 	game->projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.0001f, 1000.0f);
-	game->orthographic = glm::ortho(0, width, height, 0, -1, 1);
 }
 
 int		main(void)
@@ -63,6 +69,7 @@ int		main(void)
 			glfwSetWindowUserPointer(game.window, &game);
 			glfwSetKeyCallback(game.window, key_callback);
 			glfwSetFramebufferSizeCallback(game.window, win_resize_callback);
+			glfwSwapInterval(0);
 			glewExperimental=true;
 			if (glewInit() != GLEW_OK)
 				std::cout << "Failed to initialize GLEW\n";
