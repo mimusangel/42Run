@@ -11,7 +11,7 @@ Game::Game()
 	_fontMesh = nullptr;
 	_texFont = nullptr;
 	_font = nullptr;
-	projection = glm::perspective(glm::radians(45.0f), 1280.f / 720.f, 0.0001f, 1000.0f);
+	projection = glm::perspective(glm::radians(45.0f), 1280.f / 720.f, 0.0001f, 100.0f);
 	_state = 0;
 	debugMode = false;
 }
@@ -38,7 +38,9 @@ Game::~Game()
 void	Game::init(void)
 {
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+	glDepthRangef(0.0,1.0);
 	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
@@ -177,19 +179,19 @@ void	Game::move(void)
 
 void	Game::jump(void)
 {
-	if (_playerOffset[1] == 0.f)
+	if (_playerOffset[1] == 0.f && _jump == 0.f && jumpKey)
 	{
-		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-		{
-			_jump = 0.15f;
-		}
+		// if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+		// {
+			_jump = 0.12f;
+		// }
 	}
 	if (_jump != 0.f)
 	{
 		_playerOffset[1] += _jump;
 		_jump -= 0.01f;
 	}
-	if (_playerOffset[1] < 0.01f)
+	if (_playerOffset[1] < 0.01f && _jump != 0.f)
 	{
 		_playerOffset[1] = 0.f;
 		_jump = 0.f;
@@ -205,14 +207,14 @@ void	Game::update(void)
 		move();
 		jump();
 	}
-	else if (_state == 2 && debugMode)
-	{
-		float speed = (0.1f + (_playerPos[2] / 5000.f));
-		if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
-			_playerPos[2] += 0.05f;
-		move();
-		jump();
-	}
+	// else if (_state == 2 && debugMode)
+	// {
+	// 	float speed = (0.1f + (_playerPos[2] / 5000.f));
+	// 	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
+	// 		_playerPos[2] += 0.05f;
+	// 	move();
+	// 	jump();
+	// }
 	std::vector<Room *>::iterator it = _rooms.begin();
 	while (it != _rooms.end())
 	{
@@ -319,6 +321,13 @@ void	Game::render(void)
 		++itNext;
 		i += 1.0f;
 	}
+	rot = glm::eulerAngleY(glm::radians(_fakeRot));
+	glm::vec4 v = rot * glm::vec4(_playerOffset[0], _playerOffset[1], _playerOffset[2], 0);
+	// printf("%f, %f, %f\n", v[0], v[1], v[2]);
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), _playerPos + glm::vec3(v)) * rot;
+	glm::mat4 mvp = projection * view * model;
+	_shaders->uniformMat4((GLchar *)"MVP", (GLfloat *)&mvp[0][0]);
+	_playerRenderer->render(GL_TRIANGLES);
 }
 
 void	Game::render2D(void)
@@ -347,6 +356,8 @@ void	Game::render2D(void)
 
 void	Game::renderDebug2D(void)
 {
+	if (_state == 0)
+		return ;
 	std::string fps = "FPS:" + std::to_string(_fps) + " UPS:" + std::to_string(_ups);
 	renderText2D(fps.c_str(), 10, 60, 0.4f, 0.4f);
 	std::string posX = "X:" + std::to_string(_playerPos[0]);
@@ -422,6 +433,7 @@ void	Game::resetGame(void)
 		delete _rooms.back();
 		_rooms.pop_back();
 	}
+	jumpKey = false;
 }
 
 void	Game::addRoom(void)

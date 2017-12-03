@@ -33,6 +33,15 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 		{
 			game->debugMode = !game->debugMode;
 		}
+		else if (key == GLFW_KEY_W)
+		{
+			game->jumpKey = true;
+		}
+	}
+	else if (action == GLFW_RELEASE)
+	{
+		if (key == GLFW_KEY_W)
+			game->jumpKey = false;
 	}
 }
 
@@ -44,7 +53,7 @@ static void win_resize_callback(GLFWwindow *window, int width, int height)
 	if (!game)
 		return ;
 	glViewport(0, 0, width, height);
-	game->projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.0001f, 1000.0f);
+	game->projection = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.0001f, 100.0f);
 }
 
 int		main(void)
@@ -60,6 +69,7 @@ int		main(void)
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+		glfwWindowHint(GLFW_DEPTH_BITS, 32);
 		game.window = glfwCreateWindow(1280, 720, "42Run", NULL, NULL);
 		if (game.window == NULL)
 			std::cout << "Failed to open GLFW window. If you have an Intel GPU, they are not 4.1 compatible.\n";

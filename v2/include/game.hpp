@@ -34,11 +34,13 @@ private:
 	glm::vec3	_playerPos;
 	glm::vec3	_playerOffset;
 	float		_jump;
+	Mesh		*_playerRenderer;
 
 	int			_fps;
 	int			_ups;
 	int			_debugRoomRender;
 	float		_fakeRot;
+
 
 	void	load(void);
 	void	init(void);
@@ -50,6 +52,7 @@ public:
 	GLFWwindow	*window;
 	glm::mat4	projection;
 	bool		debugMode;
+	bool		jumpKey;
 	Game();
 	~Game();
 	void	loop(void);

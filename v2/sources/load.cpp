@@ -584,10 +584,39 @@ static Mesh	*loadMiddleRoad(void)
 	return (mesh);
 }
 
+static Mesh		*loadPlayerRenderer(void)
+{
+	Mesh	*mesh = new Mesh(4);
+	mesh->begin();
+	static const GLfloat g_vertex_buffer_data[] = {
+		-0.25f, 0.0f, 0.0f,	0.25f, 0.0f, 0.0f,	-0.25f, 0.5f, 0.0f,
+		-0.25f, 0.5f, 0.0f,	0.25f, 0.0f, 0.0f,	0.25f, 0.5f, 0.0f,
+	};
+	static const GLfloat g_color_buffer_data[] = {
+		1.0f, 1.0f, 1.0f,	1.0f, 1.0f, 1.0f,	1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f,	1.0f, 1.0f, 1.0f,	1.0f, 1.0f, 1.0f,
+	};
+	static const GLfloat g_tex_buffer_data[] = {
+		1.0f, 0.0f,		0.0f, 0.0f,		1.0f, 1.0f,
+		1.0f, 1.0f,		0.0f, 0.0f,		0.0f, 1.0f,
+	};
+	static const GLint g_texid_buffer_data[] = {
+		0, 0, 0,
+		0, 0, 0
+	};
+	mesh->add(0, GL_FLOAT, 3, (void *)g_vertex_buffer_data, 6);
+	mesh->add(1, GL_FLOAT, 3, (void *)g_color_buffer_data, 6);
+	mesh->add(2, GL_FLOAT, 2, (void *)g_tex_buffer_data, 6);
+	mesh->add(3, GL_INT, 1, (void *)g_texid_buffer_data, 6);
+	mesh->end();
+	return (mesh);
+}
+
 void	Game::load(void)
 {
 	_road[0] = loadBasicRoad();
 	_road[1] = loadLeftRoad();
 	_road[2] = loadRightRoad();
 	_road[3] = loadMiddleRoad();
+	_playerRenderer = loadPlayerRenderer();
 }
